@@ -72,3 +72,13 @@ header {
 	color: #000;
 }
 
+#job_summary{
+	margin-top: 10px;
+	width: 300px;
+	padding-top: 20px;
+	margin: auto;
+	padding-bottom: 15px;
+	}
+.button_center{
+	margin:auto 0;
+	}
