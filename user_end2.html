@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html><!-- InstanceBegin template="/Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+	<title>Mobile App</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" >
+	
+    <link href="css/jquerymobile.min.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquerymobile.min.js"></script>
+	<script src="cordova.js"></script>
+	<!-- InstanceBeginEditable name="EditableHead" -->
+	<!-- InstanceEndEditable --> 
+</head>
+
+<body>
+	<div id="page">
+
+	<header data-role="none">
+		<div id="header-logo">
+			<div class="tile-box"><img src="images/taxi-logo.png" alt="Get a Taxi App"></div>
+		</div>
+		<!-- InstanceBeginEditable name="EditableHeader" -->
+	  
+		<!-- InstanceEndEditable -->
+	</header>
+	<div data-role="none">
+		<!-- InstanceBeginEditable name="EditableBody" -->
+	  
+			 <div class="user-destination-form mini" style="background-color:#cfe2f3">
+				<form  action="#" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="action" value="submit">
+                    
+                    <!--<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br"><input type="text" id="name" name="name" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" value="Pickup Address..." onfocus="if(this.value == 'Pickup Address...') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Pickup Address...'; }" ></div>-->
+                    
+                   <input class="input-block-level ab_input ab_contact" type="text" name="name" value="Pickup Address..." onfocus="if(this.value == 'Pickup Address...') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Pickup Address...'; }" />
+                    
+                    <input class="input-block-level ab_input ab_contact" type="text" name="email" value="Dropoff Address..." onfocus="if(this.value == 'Dropoff Address...') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'Dropoff Address...'; }" />
+                    
+                    
+                    <div class="more-options mini">Click to Show More Options</div>
+                    
+                    <!--<textarea class="input-block-level ab_textarea ab_contact" name="message" onfocus="if(this.value == 'Write your message or query here...') { this.value = ''; }" onblur="if (this.value == '') { this.value='Write your message or query here...'; }">Write your message or query here...</textarea>-->
+                    <div class="ui-body ui-body-b">
+		<fieldset class="ui-grid-a">
+				<div class="ui-block-a"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="null" data-iconpos="null" data-theme="d" class="ui-btn ui-shadow ui-btn-corner-all ui-submit ui-btn-up-d" aria-disabled="false"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Get Rate</span></span><button data-theme="d" type="submit" class="ui-btn-hidden" aria-disabled="false">Get Rate</button></div></div>
+				<div class="ui-block-b"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="null" data-iconpos="null" data-theme="a" class="ui-btn ui-shadow ui-btn-corner-all ui-submit ui-btn-up-a" aria-disabled="false"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Cancel</span></span><button data-theme="a" type="submit" class="ui-btn-hidden" aria-disabled="false">Cancel</button></div></div>
+	    </fieldset>
+		</div>
+    			</form>
+			 </div>
+			
+		<!-- InstanceEndEditable -->
+		<div style="clear:both"></div>
+	</div>
+	<footer data-role="footer" data-position="fixed">
+		
+    <!-- InstanceBeginEditable name="EditableFooter" -->
+	
+	<!-- InstanceEndEditable -->
+	</footer>
+	</div>
+</body>
+<!-- InstanceEnd --></html>
