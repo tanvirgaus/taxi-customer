@@ -1,4 +1,4 @@
-function getLatLong($address) {
+/*function getLatLong($address) {
 
     $address = str_replace(' ', '+', $address);
     $url = 'http://maps.googleapis.com/maps/api/geocode/json?address='.$address.'&sensor=false';
@@ -11,4 +11,4 @@ function getLatLong($address) {
     $json = json_decode($geoloc);
     return array($json->results[0]->geometry->location->lat, $json->results[0]->geometry->location->lng);
 
-}
+}*/
