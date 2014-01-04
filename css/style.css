@@ -126,4 +126,10 @@ header {
 	margin: auto;
 	padding-bottom: 15px;
 	}
+
 .comments, .mapping{ height:200px; width: 300px; border: 4px solid #000000; margin: 10px auto;}
+
+.button_center{
+	margin:auto 0;
+	}
+
