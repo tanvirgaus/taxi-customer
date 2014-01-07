@@ -75,8 +75,8 @@ header {
 
 /*biplob added*/
 .user-destination-form{
-	width: 97.7%;
-	height: 20em;
+	width: 43.2em;
+	height: auto;
 	text-align: center;
 	margin: .25em;
 	padding: .25em;
@@ -84,7 +84,7 @@ header {
 	float: left;
 	color: #000000;
 }
-.driver-rate, .more-options{
+.driver-rate{
 	cursor: pointer;
 	margin: 5px auto;
 	color: #000000;
@@ -92,39 +92,15 @@ header {
 	border: 2px solid #000000;
 	width: 300px;
 }
-.ab_contact{
-	background-color: #f8f8f8;
-	margin:10px;
-    border:2px solid #e0e0e0;
-    margin-bottom: 10px;
-    text-align: center;
- -webkit-border-radius: 10px; 
- -moz-border-radius: 10px; 
- -o-border-radius: 10px; 
- border-radius: 10px;
- 	font-style: italic;
-}
-
-.ab_input{
-	width: 300px;
-	text-align: left;
-	padding: 10px;
-}
-
-.ab_submit{
-   width: 200px;
-   height: 55px;
-}
-
 
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 
 #job_summary{
 	margin-top: 10px;
-	width: 300px;
 	padding-top: 20px;
 	margin: auto;
 	padding-bottom: 15px;
+	color: #000;
 	}
 
 .comments, .mapping{ height:200px; width: 300px; border: 4px solid #000000; margin: 10px auto;}
@@ -133,3 +109,56 @@ header {
 	margin:auto 0;
 	}
 
+.get-quote-bg{
+	background-color:#ffc300;
+	margin: 0.25em;
+	padding: 0.25em;
+}
+.get-quote-bg h2{ color: #000000;}
+.get-quote-bg lable.ui-input-text, .get-quote-bg .label-color, .get-quote-bg .ui-select{ color: #000000;}
+.get-quote-bg .ui-btn{ padding: 3px 0 !important;}
+.my-profile-bg{
+	background-color:#519f09;
+}
+.help-bg{
+	background-color:#57bae8;
+}
+.sign-out-bg{
+	background-color:#e05338;
+}
+
+.flip-1{ background: #fff; cursor: pointer; color: #000; margin-bottom: .5em; padding: .55em .25em;}
+.flip-1 label{ cursor: pointer;}
+.panel-1{ color: #000; padding: .55em .25em;}
+
+.ui-corner-all{ -webkit-border-radius:0em !important;
+ border-radius:0em !important;
+}
+
+div.ui-input-text input.ui-input-text, div.ui-input-text textarea.ui-input-text, .ui-input-search input.ui-input-text{
+ padding-left: 5px !important;
+
+ }
+.ui-input-search, div.ui-input-text{
+ 
+ margin:0px !important;}
+ 
+div.ui-input-text{
+ padding:0px !important;}
+ 
+ div.bcs_margin{ margin: 5px 0 10px 0 !important;}
+ 
+ /*jahid code*/
+ 
+ div#form_content{
+ margin:0 25px;}
+ 
+ div.input_bottom_space{
+ margin-top:5px !important;
+ margin-bottom:20px !important;
+}
+
+#content_up{
+ padding:5px;
+ margin:4px;
+ }
