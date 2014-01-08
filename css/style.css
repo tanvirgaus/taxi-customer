@@ -161,3 +161,7 @@ div.ui-input-text{
 .get-quote-bg .ui-btn-inner{
  border-top: 0px solid #fff !important;
 }
+
+#dist_button label{
+	cursor:pointer;
+	}

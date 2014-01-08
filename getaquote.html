@@ -79,25 +79,35 @@
           });
         
         
-        $("#find").click(function(){
-          $("#geocomplete").trigger("geocode");
+        $("#dist_button").click(function(){
+          //$("#geocomplete").trigger("geocode");
+		  
+		  var source = $('#pickup').val();
+		  var destination = $('#dropoff').val();
+		  
+		  alert(source+destination); 
+		  calculateDistances(source,destination);
+		 
+		 	//$("#dist_result").fadeToggle(1000);
+			//console.log();
+
         });
         
         
         $("#examples a").click(function(){
-          $("#geocomplete").val($(this).text()).trigger("geocode");
+          //$("#geocomplete").val($(this).text()).trigger("geocode");
           return false;
         });
         
       });
     </script>
-<!--    <script>
-		function calculateDistances() {
+    <script>
+		function calculateDistances(s,d) {
 		  var service = new google.maps.DistanceMatrixService();
 		  service.getDistanceMatrix(
 			{
-			  origins: [origin1, origin2],
-			  destinations: [destinationA, destinationB],
+			  origins: [s],
+			  destinations: [d],
 			  travelMode: google.maps.TravelMode.DRIVING,
 			  unitSystem: google.maps.UnitSystem.METRIC,
 			  avoidHighways: false,
@@ -107,28 +117,29 @@
 		
 		function callback(response, status) {
 		  if (status != google.maps.DistanceMatrixStatus.OK) {
+			  console.log();
 			alert('Error was: ' + status);
 		  } else {
 			var origins = response.originAddresses;
 			var destinations = response.destinationAddresses;
-			var outputDiv = document.getElementById('outputDiv');
+			var outputDiv = document.getElementById('dist_result');
 			outputDiv.innerHTML = '';
-			deleteOverlays();
+			//deleteOverlays();
 		
 			for (var i = 0; i < origins.length; i++) {
 			  var results = response.rows[i].elements;
-			  addMarker(origins[i], false);
+			  //addMarker(origins[i], false);
 			  for (var j = 0; j < results.length; j++) {
-				addMarker(destinations[j], true);
+				//addMarker(destinations[j], true);
 				outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
-					+ ': ' + results[j].distance.text + ' in '
+					+ ':<br>' + results[j].distance.text + ' in '
 					+ results[j].duration.text + '<br>';
 			  }
 			}
 		  }
 		}
     
-    </script>-->
+    </script>
 
 			 <div class="get-quote-bg content-position">
              
@@ -150,7 +161,14 @@
 								<option value="rush">Black</option>
 							</select></div></div></div>
                     
+                    <div id="distance" class="ui-body" data-role="none" style="color: #000;">
                     
+                    	<div class="ui-block" id="dist_button">
+                        <label>Distance</label>
+                        </div>
+                        <div class="ui-block" id="dist_result"></div>
+                    
+                    </div>
                    <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
              <div class="panel-1">
 				<label>Some features will be added here</label>
