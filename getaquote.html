@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquerymobile.min.js"></script>
+   	<script src="js/jquery.geocomplete.js"></script>
+    <script src="js/logger.js"></script>
 	<script src="cordova.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
 	<!-- InstanceEndEditable --> 
@@ -50,6 +52,45 @@
             });
 
 		</script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+            <script>
+      $(function(){
+        
+        $("#pickup").geocomplete()
+          .bind("geocode:result", function(event, result){
+            $.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function(event, status){
+            $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function(event, results){
+            $.log("Multiple: " + results.length + " results found");
+          });
+		  
+		  $("#dropoff").geocomplete()
+          .bind("geocode:result", function(event, result){
+            $.log("Result: " + result.formatted_address);
+          })
+          .bind("geocode:error", function(event, status){
+            $.log("ERROR: " + status);
+          })
+          .bind("geocode:multiple", function(event, results){
+            $.log("Multiple: " + results.length + " results found");
+          });
+        
+        
+        $("#find").click(function(){
+          $("#geocomplete").trigger("geocode");
+        });
+        
+        
+        $("#examples a").click(function(){
+          $("#geocomplete").val($(this).text()).trigger("geocode");
+          return false;
+        });
+        
+      });
+    </script>
 
 			 <div class="get-quote-bg content-position">
              
