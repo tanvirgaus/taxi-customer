@@ -54,6 +54,14 @@
 		</script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
             <script>
+
+            function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
       $(function(){
         
         $("#pickup").geocomplete()
@@ -80,24 +88,63 @@
         
         
         $("#dist_button").click(function(){
-          //$("#geocomplete").trigger("geocode");
-		  
+         	  
 		  var source = $('#pickup').val();
 		  var destination = $('#dropoff').val();
 		  
 		  alert(source+destination); 
 		  calculateDistances(source,destination);
-		 
-		 	//$("#dist_result").fadeToggle(1000);
-			//console.log();
+
 
         });
+
+		$("#my-locatipn").click(function(){
+			
+			getLocation();
+			
+			function getLocation(){
+				if (navigator.geolocation){
+					navigator.geolocation.getCurrentPosition(showPosition);
+				}
+			  	else{/*x.innerHTML="Geolocation is not supported by this browser.";*/
+					alert('Geolocation is not supported by this browser.');
+				}
+			}
+			
+			function showPosition(position){
+				console.log((position.coords.longitude));
+				$('#pickup').val('Your current location');
+				var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng=51.436951,0.058112&sensor=true';
+				//var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true';
+				 
+				  
+				 $.getJSON(address,function(result){
+					   	
+                    //console.log(result.results);    
+				  	$.each(result.results, function(i, field){
+					
+						$.each(field.address_components, function(i, obj_type){
+
+
+                             if(inArray('postal_code_prefix',obj_type.types)||
+                             	 inArray('postal_code',obj_type.types)){
+
+
+                             	console.log(obj_type.short_name);
+                             }
+   
+
+						});
+						
+											
+				  });
+				});
+
+				
+			 }
+		});
         
-        
-        $("#examples a").click(function(){
-          //$("#geocomplete").val($(this).text()).trigger("geocode");
-          return false;
-        });
+
         
       });
     </script>
@@ -150,6 +197,7 @@
                     <lable for="basic" class="ui-input-text">Pickup Address</lable>
                     <div class="bcs_margin ui-input-text ui-shadow-inset ui-btn-shadow ui-body-c">
                     	<input type="text" name="text" id="pickup" value="" placeholder="Pickup Address?" class="ui-input-text ui-body-c">
+                        <span id="my-locatipn">My Location</span>
                      </div>
                      <lable for="basic" class="ui-input-text">Dropoff Address</lable>
                     <div class="bcs_margin ui-input-text ui-shadow-inset ui-btn-shadow ui-body-c">
