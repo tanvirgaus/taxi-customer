@@ -12,75 +12,62 @@
    	<script src="js/jquery.geocomplete.js"></script>
     <script src="js/logger.js"></script>
 	<script src="cordova.js"></script>
+	<script src="js/functions.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
 	<!-- InstanceEndEditable --> 
 </head>
 
 <body>
+	<div data-role="page">
 	<div id="page">
-
 	<header data-role="none">
 		<div id="header-logo">
 			<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
 		</div>
 		<!-- InstanceBeginEditable name="EditableHeader" -->
-	  
+<script type="text/javascript">
+
+function callbackLogin(data) {
+	if(data.error == false) {
+		setLoginState(data);
+		location.replace('dashboard.html');
+	} else {
+		showMessage(data);
+	}
+}
+
+</script>
 		<!-- InstanceEndEditable -->
 	</header>
-	<div data-role="none">
+	<div data-role="none" id="content">
 		<!-- InstanceBeginEditable name="EditableBody" -->
-	  <script>location.replace('dashboard.html');</script>
-<!--		 <div class="tile mini" style="background-color:#ffc300">
-			<a href="#"></a>
-			<div class="tile-box"><img src="images/taxi.png" alt="Get a Qoute"><div class="black-text">Get a Quote</div></div>
-		 </div>
-		 <div class="tile mini" style="background-color:#519f09">
-			<a href="#"></a>
-			<div class="tile-box"><div><i class="fa fa-user fa-4x"></i></div>
-			My Profile</div>
-		</div>
-		<div class="tile mini" style="background-color:#b35364">
-			<a href="map.html" rel="external"></a>
-			<div class="tile-box">
-				<div><i class="fa fa-map-marker fa-4x"></i></div>
-				<div class="text-tile text-mini-left">Map</div>
-			</div>
-			
-		</div>
-		<div class="tile mini" style="background-color:#57bae8">
-			<a href="#"></a>
-			<div class="tile-box">
-			<i class="fa fa-question-circle fa-4x"></i>
-			<div>Help</div>
-			</div>
-		</div>
-		<div class="tile mini" style="background-color:#e05338">
-			<a href=""></a>
-			<div class="tile-box">
-			<i class="fa fa-sign-out fa-4x"></i>
-			<div>Sign Out</div>
-			</div>
-		</div>  
-		<div class="tile mini" style="background-color:#377aae">
-			<a href=""></a>
-			<div class="tile-box">
-			testing 01404f
-			</div>
-		</div>  
-		<div class="tile mini" style="background-color:#01404f">
-			<a href=""></a>
-			<div class="tile-box">
-			testing
-			</div>
-		</div>    
-		<div class="tile mini" style="background-color:#5d811f">
-			<a href=""></a>
-			<div class="tile-box">
-			testing #24273a
-			</div>
-		</div>  
-		
--->		<!-- InstanceEndEditable -->
+
+	<div class="my-profile-bg content-position"> 
+    	<h2>User Login</h2>                 
+                            	<form accept-charset="utf-8" method="post" action="" id="UserLoginForm" name="UserLoginForm" onSubmit="return submitForm(this);">
+                                    <fieldset>
+                                        <lable for="basic" class="ui-input-text">User Name</lable>
+                                        <div class="input_bottom_space ui-input-text ui-shadow-inset ui-btn-shadow ui-body-b">
+                                        <input type="text" name="text" id="data[User][username]" value="" placeholder="User Name" class="ui-input-text ui-body-c">
+                                        </div>
+                                        <lable for="basic" class="ui-input-text">Password</lable>
+                                        <div class="input_bottom_space ui-input-text ui-shadow-inset ui-btn-shadow ui-body-c">
+                                        <input type="password" name="text" id="data[User][password]" value="" placeholder="Password" class="ui-input-text ui-body-c">
+										<input type="hidden" name='controller' value="User"  />
+										<input type="hidden" name='action' value="login"  />	
+										<input type="hidden" name='callback' value="callbackLogin" />
+                                        </div>
+                                        																				
+                                        <div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="null" data-iconpos="null" data-theme="a" class="ui-btn ui-shadow ui-submit ui-btn-up-b" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Submit</span></span><button type="submit" data-theme="a" class="ui-btn-hidden" aria-disabled="false">Submit</button></div>
+                                        
+                                    </fieldset>
+                                </form>
+                                
+
+	</div>        
+                                
+                                
+		<!-- InstanceEndEditable -->
 		<div style="clear:both"></div>
 	</div>
 	<footer data-role="footer" data-position="fixed">
@@ -89,6 +76,7 @@
 	
 	<!-- InstanceEndEditable -->
 	</footer>
+	</div>
 	</div>
 </body>
 <!-- InstanceEnd --></html>

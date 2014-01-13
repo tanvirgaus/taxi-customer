@@ -12,6 +12,7 @@
    	<script src="js/jquery.geocomplete.js"></script>
     <script src="js/logger.js"></script>
 	<script src="cordova.js"></script>
+	<script src="js/functions.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 	<script src="js/application.js"></script>
@@ -20,8 +21,8 @@
 </head>
 
 <body>
+	<div data-role="page">
 	<div id="page">
-
 	<header data-role="none">
 		<div id="header-logo">
 			<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
@@ -30,7 +31,7 @@
 	  
 		<!-- InstanceEndEditable -->
 	</header>
-	<div data-role="none">
+	<div data-role="none" id="content">
 		<!-- InstanceBeginEditable name="EditableBody" -->
 	  
 			<div id="map-canvas"> </div>
@@ -44,6 +45,7 @@
 	
 	<!-- InstanceEndEditable -->
 	</footer>
+	</div>
 	</div>
 </body>
 <!-- InstanceEnd --></html>
