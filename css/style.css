@@ -169,3 +169,23 @@ div.ui-input-text{
 float: right;
 cursor: pointer;
 }
+
+.contact-form input[type=text]{
+	width: 100%;
+	height: 45px;
+	margin-bottom: 20px;
+	border: solid 1px #e9e9e9;
+	padding-left: 10px;
+}
+
+.contact-form input[type=password]  {
+	width: 100%;
+	height: 45px;
+	margin-bottom: 20px;
+	border: solid 1px #e9e9e9;
+	padding-left: 10px;
+}
+
+#left-button{
+	margin-top:-20px;
+}

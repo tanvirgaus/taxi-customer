@@ -4,12 +4,12 @@ var serviceURL		= "http://dev.smart-catalog.com.au/uk/taxi-app/services/";
  * Setting var value as per Dev enviornment
  */
 var	loc = window.location.toString();
-if(loc.search("dev") != -1){
-	serviceURL = "http://taxi-app.dev/services"; // For configured dev sites
+if(loc.search("taxi-customer") != -1){
+	serviceURL = "http://taxi-app.dev/services/"; // For configured dev sites
 } else if(loc.search("/localhost/") != -1) {
-	serviceURL = "http://localhost/projects/uk/taxi-app/"; // For localhost
+	serviceURL = "http://localhost/projects/uk/taxi-app/services/"; // For localhost
 }
-
+alert(serviceURL);
 var pageTitle		= '';
 var nonSecurePages	= ["index.html","forgot-password.html","registration.html"];
 
@@ -42,7 +42,7 @@ function getLoginState() {
 /* Delete Login state - Logout */
 function logout() {
 	clearLocalStorage();
-	User = userShootId = trapEventId = null;
+	User = null;
 	location.replace('index.html');
 }
 /**
@@ -114,12 +114,13 @@ function clearSessionStorage() {
 /* Global submit with JSONP */
 
 function submitForm(formObj) {
+	alert(serviceURL);
 	callback	= $('input[name="callback"]', formObj).val();
 	controller 	= $('input[name="controller"]', formObj).val();
 	action		= $('input[name="action"]', formObj).val();
 	$.ajax({
-		beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
-		complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner
+		//beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
+		//complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner
 		url: serviceURL + controller + '/' + action,
 		crossDomain: true,
 		cache: true,
