@@ -14,28 +14,16 @@ var pageTitle		= '';
 var nonSecurePages	= ["index.html","forgot-password.html","registration.html"];
 
 var User = null;
-
-  document.addEventListener(
-    'deviceready',
-    function () {
-      $('body').css('visibility', 'hidden');
-       	//$(document).bind('pageinit')
-	$(document).on("mobileinit", function(){
-	$.extend(  $.mobile , {
-		ajaxEnabled: true,
-		allowCrossDomainPages: true,
-		phonegapNavigationEnabled: true
-	});
-	
-	$(function(){ $('input').attr('autocomplete', 'off'); });
-	$(function(){ $('[data-role=header],[data-role=footer]').fixedtoolbar({ tapToggle:false }); });
-
-        $('body').css('visibility', '');
+	$(document).bind("mobileinit", function(){
+		$.extend(  $.mobile , {
+			ajaxEnabled: true,
+			allowCrossDomainPages: true,
+			phonegapNavigationEnabled: true
+		});
+		//$(function(){ $('input').attr('autocomplete', 'off'); });
+		$(function(){ $('[data-role=header],[data-role=footer]').fixedtoolbar({ tapToggle:false }); });
       });
-      $.getScript('jquerymobile.min.js');
-    },
-    false
-  );
+
 
 
 /* Set login State*/

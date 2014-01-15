@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/font-awesome/css/font-awesome.min.css">
 	<script src="../js/jquery.min.js"></script>
    	<script src="../js/jquery.geocomplete.js"></script>
+   	<script src="../js/jquerymobile.min.js"></script>
     <script src="../js/logger.js"></script>
 	<script src="../cordova.js"></script>
 	<script src="../js/functions.js"></script>
