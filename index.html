@@ -48,11 +48,11 @@ function callbackLogin(data) {
 
 					<div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-user fa-fw"></i></div>
-                           <input class="custom-text" type="text" placeholder="Username" id="data[User][username]">
+                           <input class="custom-text" type="text" placeholder="Username" id="data[User][username]" data-role="none">
                     </div>
                     <div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-lock fa-fw"></i></div>
-                           <input class="custom-text" type="password" placeholder="Password" id="data[User][password]">
+                           <input class="custom-text" type="password" placeholder="Password" id="data[User][password]" data-role="none">
                     </div>
                     
                     
@@ -63,7 +63,7 @@ function callbackLogin(data) {
 					<input type="hidden" name='callback' value="callbackLogin" />
                     																	
 			
-					<div class='input-container'><button type="submit" class="login">Login</button></div>
+					<div class='input-container'><button type="submit" class="login" data-role="none">Login</button></div>
 
 
             </form>
