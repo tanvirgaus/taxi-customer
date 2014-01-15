@@ -9,13 +9,18 @@ if(loc.search("taxi-customer") != -1){
 } else if(loc.search("/localhost/") != -1) {
 	serviceURL = "http://localhost/projects/uk/taxi-app/services/"; // For localhost
 }
-alert(serviceURL);
+
 var pageTitle		= '';
 var nonSecurePages	= ["index.html","forgot-password.html","registration.html"];
 
 var User = null;
-//$(document).bind('pageinit')
-$(document).bind("mobileinit", function(){
+
+  document.addEventListener(
+    'deviceready',
+    function () {
+      $('body').css('visibility', 'hidden');
+       	//$(document).bind('pageinit')
+	$(document).on("mobileinit", function(){
 	$.extend(  $.mobile , {
 		ajaxEnabled: true,
 		allowCrossDomainPages: true,
@@ -24,7 +29,14 @@ $(document).bind("mobileinit", function(){
 	
 	$(function(){ $('input').attr('autocomplete', 'off'); });
 	$(function(){ $('[data-role=header],[data-role=footer]').fixedtoolbar({ tapToggle:false }); });
-});
+
+        $('body').css('visibility', '');
+      });
+      $.getScript('jquerymobile.min.js');
+    },
+    false
+  );
+
 
 /* Set login State*/
 function setLoginState(data) {
