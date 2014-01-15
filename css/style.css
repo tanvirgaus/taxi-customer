@@ -111,7 +111,8 @@ header {
 .get-quote-bg lable.ui-input-text, .get-quote-bg .label-color, .get-quote-bg .ui-select{ color: #000000;}
 .get-quote-bg .ui-btn{ padding: 3px 0 !important;}
 .my-profile-bg{
-	background-color:#519f09;
+
+background-image:url(../images/blur_background.jpg);
 }
 .help-bg{
 	background-color:#57bae8;
@@ -170,22 +171,97 @@ float: right;
 cursor: pointer;
 }
 
-.contact-form input[type=text]{
-	width: 100%;
-	height: 45px;
-	margin-bottom: 20px;
-	border: solid 1px #e9e9e9;
-	padding-left: 10px;
-}
-
-.contact-form input[type=password]  {
-	width: 100%;
-	height: 45px;
-	margin-bottom: 20px;
-	border: solid 1px #e9e9e9;
-	padding-left: 10px;
-}
 
 #left-button{
 	margin-top:-20px;
 }
+
+.icon-ph {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    min-width: 16px;
+    padding: 13px 10px;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #000;
+    position:absolute;
+    left:0px;
+    top:0px;
+	opacity:.5;
+
+    z-index:3;
+  }
+.custom-text {
+    padding:6px 0px 6px 30px ;
+}
+.input-container {
+  position:relative;
+}
+
+.input-container input[type=text]{
+	width: 90%;
+	height: 44px;
+	margin-bottom: 20px;
+	border: solid 0px #e9e9e9;
+	padding-left: 65px;
+	background: #000;
+	opacity: 0.4;
+	font-size: 22px;
+	color: #FFF;
+}
+
+.input-container input[type=password]  {
+	width: 90%;
+	height: 44px;
+	margin-bottom: 20px;
+	border: solid 0px #e9e9e9;
+	padding-left: 65px;
+	background: #000;
+	opacity: 0.4;
+	font-size: 22px;
+	color: #FFF;
+}
+
+.input-container input[type=button]{
+	height: 56px;
+	margin-bottom: 20px;
+	border: solid 0px #e9e9e9;
+	background: #dd636d;
+	opacity: 0.4;
+	font-size: 22px;
+	color: #FFF;
+	margin-left: 0px;
+	cursor: pointer;
+	float: left;
+	margin-right: 5px;
+}
+
+.input-container button[type=submit]{
+	height: 56px;
+	margin-bottom: 20px;
+	border: solid 0px #e9e9e9;
+	background: #000;
+	opacity: 0.8;
+	font-size: 22px;
+	color: #FFF;
+	margin-left: 0px;
+	cursor: pointer;
+	width: 90%;
+	padding:0px;
+}
+
+.back{
+	
+	width:58px;
+	}
+.button-pointer{
+	
+	cursor:pointer;
+	background:#dd636d;
+}
+.login{
+	width:100% !important;}

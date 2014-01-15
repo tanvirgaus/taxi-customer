@@ -43,22 +43,31 @@ function callbackLogin(data) {
 
 	<div class="my-profile-bg content-position"> 
     	<h2>User Login</h2>                 
-        	<form accept-charset="utf-8" method="post" action="" id="UserLoginForm" name="UserLoginForm" onSubmit="return submitForm(this);" data-role="none" class="contact-form">
-                <fieldset data-role="none">
-                    <input type="text" name="text" id="data[User][username]" value="" placeholder="User Name" data-role="none" data-icon="fa-arrow-circle">
-                    <i class="fa fa-arrow-circle-o-right fa-2x" id="left-button"></i>
-                    <input type="password" name="text" id="data[User][password]" value="" placeholder="Password"  data-role="none">
-					<input type="hidden" name='controller' value="Users"  />
+        	<form>
+
+					<div class='input-container'>
+                            <div class="icon-ph"><i class="fa fa-user fa-fw"></i></div>
+                           <input class="custom-text" type="text" placeholder="Username" id="data[User][username]">
+                    </div>
+                    <div class='input-container'>
+                            <div class="icon-ph"><i class="fa fa-lock fa-fw"></i></div>
+                           <input class="custom-text" type="password" placeholder="Password" id="data[User][password]">
+                    </div>
+                    
+                    
+                    
+                    
+                    <input type="hidden" name='controller' value="Users"  />
 					<input type="hidden" name='action' value="login"  />	
 					<input type="hidden" name='callback' value="callbackLogin" />
                     																	
 			
-                    <div><button type="submit" data-role="none">Submit</button></div>
+					<div class='input-container'><button type="submit" class="login">Login</button></div>
 
-                </fieldset>
+
             </form>
                                 
-<a href="dashboard.html" data-role="button" data-transition="slide">dashboard</a>
+
 	</div>        
                                 
 		<!-- InstanceEndEditable -->
