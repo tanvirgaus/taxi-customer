@@ -195,20 +195,34 @@
                
 				<form  action="#" method="POST" enctype="multipart/form-data">
 
-                    <lable for="basic" class="ui-input-text">Pickup Address</lable>
-                    <div class="bcs_margin ui-input-text ui-shadow-inset ui-btn-shadow ui-body-c">
-                    	<input type="text" name="text" id="pickup" value="" placeholder="Pickup Address?" class="ui-input-text ui-body-c">
-                        <span id="my-locatipn">My Location</span>
-                     </div>
-                     <lable for="basic" class="ui-input-text">Dropoff Address</lable>
-                    <div class="bcs_margin ui-input-text ui-shadow-inset ui-btn-shadow ui-body-c">
-                    	<input type="text" name="text" id="dropoff" value="" placeholder="Dropoff Address?" class="ui-input-text ui-body-c">
-                     </div>
-                     
-                     <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br"><label for="select-choice-e" class="select ui-select">Choose Cars</label><div class="ui-select"><div data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="arrow-d" data-iconpos="right" data-theme="e" class="ui-btn ui-shadow ui-btn-icon-right ui-btn-up-e"><select name="select-choice-e" id="select-choice-e">
+
+
+                
+                    <div class='input-container'>
+                            <div class="icon-ph"><i class="fa fa-map-marker fa-fw"></i></div>
+                           <input class="custom-text" type="text" placeholder="Pickup Address?" data-role="none" id="pickup" >
+                            <div class="icon-lh" id="my-locatipn"><i class="fa fa-search fa-fw"></i></div>                           
+                    </div>
+                    
+					<div class='input-container'>
+                            <div class="icon-ph"><i class="fa fa-location-arrow fa-fw"></i></div>
+                           <input class="custom-text" type="text" placeholder="Dropoff Address?" data-role="none" id="dropoff" >
+                    </div>
+                    
+                    <div class='input-container'>
+                    		<select name="select-choice-e" id="" class="custom-text" data-role="none">
 								<option value="standard">Silver</option>
 								<option value="rush">Black</option>
-							</select></div></div></div>
+							</select>
+                    </div>
+                    <div class='input-container'>
+                    <div class="icon-ph button-pointer"><i class="fa fa-chevron-left fa-fw"></i></div>
+
+                           <input type="button" placeholder="Back" class="back" data-role="none">
+                           <button type="submit" data-role="none" data-role="none">Continue</button>
+
+                    </div>  
+
                     
                     <div id="distance" class="ui-body" data-role="none" style="color: #000;">
                     
@@ -218,17 +232,10 @@
                         <div class="ui-block" id="dist_result"></div>
                     
                     </div>
-                   <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
-             <div class="panel-1">
-				<label>Some features will be added here</label>
-			</div>
+<!--                   <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
+             		<div class="panel-1"><label>Some features will be added here</label></div>-->
                     
-                    <div class="ui-body ui-body-b">
-		<fieldset class="ui-grid-a">
-				<div class="ui-block-a"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="null" data-iconpos="null" data-theme="d" class="ui-btn ui-shadow ui-submit ui-btn-up-b" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Get Rate</span></span><button data-theme="d" type="submit" class="ui-btn-hidden" aria-disabled="false"  onClick="javascript:location.href = 'reviewoffer.html';">Get Rate</button></div></div>
-				<div class="ui-block-b"><div data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="null" data-iconpos="null" data-theme="a" class="ui-btn ui-shadow ui-submit ui-btn-up-e" aria-disabled="false"><span class="ui-btn-inner"><span class="ui-btn-text">Cancel</span></span><button data-theme="a" type="submit" class="ui-btn-hidden" aria-disabled="false"  onClick="javascript:location.href = 'dashboard.html';">Cancel</button></div></div>
-	    </fieldset>
-		</div>
+ 
     			</form>
 			 </div>
 			
