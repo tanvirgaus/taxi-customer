@@ -114,7 +114,7 @@ function clearSessionStorage() {
 /* Global submit with JSONP */
 
 function submitForm(formObj) {
-	alert(serviceURL);
+	
 	callback	= $('input[name="callback"]', formObj).val();
 	controller 	= $('input[name="controller"]', formObj).val();
 	action		= $('input[name="action"]', formObj).val();
@@ -143,9 +143,10 @@ function submitForm(formObj) {
 function getAjaxData(params, callback) {
 	controller 	= params['controller'];
 	action		= params['action'];
+	alert('here');
 	$.ajax({
-		beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
-		complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner
+		//beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
+		//complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner
 		url: serviceURL + controller + '/' + action,
 		crossDomain: true,
 		cache: true,

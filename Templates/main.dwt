@@ -7,13 +7,14 @@
     <link href="../css/jquerymobile.min.css" type="text/css" rel="stylesheet">
     <link href="../css/style.css" type="text/css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../css/font-awesome/css/font-awesome.min.css">
+    <link href="../css/media-query.css" type="text/css" rel="stylesheet">
 	<script src="../js/jquery.min.js"></script>
    	<script src="../js/jquerymobile.min.js"></script>
     <script src="../js/logger.js"></script>
 	<script src="../cordova.js"></script>
 	<script src="../js/functions.js"></script>
 	<!-- TemplateBeginEditable name="EditableHead" -->
-	
+
 	
 	<!-- TemplateEndEditable --> 
 </head>

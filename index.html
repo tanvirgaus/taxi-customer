@@ -7,6 +7,7 @@
     <link href="css/jquerymobile.min.css" type="text/css" rel="stylesheet">
     <link href="css/style.css" type="text/css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
+    <link href="css/media-query.css" type="text/css" rel="stylesheet">
 	<script src="js/jquery.min.js"></script>
    	<script src="js/jquerymobile.min.js"></script>
     <script src="js/logger.js"></script>
@@ -25,10 +26,16 @@
 		</div>
 		<!-- InstanceBeginEditable name="EditableHeader" -->
 <script type="text/javascript">
-
+$(function () {
+	params = [];
+	params['controller'] = 'Users';
+	params['action'] = 'login';
+//	getAjaxData(params, 'callbackLogin');
+});
 function callbackLogin(data) {
+	
 	if(data.error == false) {
-		setLoginState(data);
+		//setLoginState(data);
 		location.replace('dashboard.html');
 	} else {
 		showMessage(data);
@@ -43,15 +50,15 @@ function callbackLogin(data) {
 
 	<div class="my-profile-bg content-position"> 
     	<h2>User Login</h2>                 
-        	<form id="login">
+        	<form id="login" method="post" action="" onsubmit="return submitForm(this)">
 
 					<div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-user fa-fw"></i></div>
-                           <input class="custom-text" type="text" placeholder="Username" id="data[User][username]" data-role="none">
+                           <input class="custom-text" type="text" placeholder="Username" name="data[User][username]" data-role="none">
                     </div>
                     <div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-key fa-fw"></i></div>
-                           <input class="custom-text" type="password" placeholder="Password" id="data[User][password]" data-role="none">
+                           <input class="custom-text" type="password" placeholder="Password" name="data[User][password]" data-role="none">
                     </div>
                     
                     
@@ -62,11 +69,12 @@ function callbackLogin(data) {
 					<input type="hidden" name='callback' value="callbackLogin" />
                     																	
 			
-					<div class='input-container'><button type="submit" class="login" data-role="none">Login</button></div>
+					<div class='input-container'><button type="submit" class="login-width" data-role="none">Login</button></div>
 
 
             </form>
-                <a href="dashboard.html" data-transition="flip">Dashboard</a> Forgot Password!               
+                <a href="dashboard.html" data-transition="flip" style="color:#FFF">Dashboard</a> 
+                <a href="register.html" data-transition="slide" style="color:#FFF">Register</a>              
 
 	</div>        
                                 
