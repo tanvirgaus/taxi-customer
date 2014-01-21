@@ -29,7 +29,7 @@
 
 		function callbackRegister(data) {
 			
-			if(data.error == false) {
+			if(data.status == false) {
 				//setLoginState(data);
 				//location.replace('dashboard.html');
 			} else {
@@ -47,44 +47,34 @@
 	<div data-role="none" id="content">
 		<!-- InstanceBeginEditable name="EditableBody" -->
 
-     <div class="my-profile-bg content-position">                   
-		<h2>Registration Form</h2>
-                                        
-       <form id="register" method=get" action="" onsubmit="return submitForm(this)">
-
-
-                                        <div class='input-container'>
-                                                <div class="icon-ph"><i class="fa fa-bars fa-fw"></i></div>
-                                   <input class="custom-text" type="text" placeholder="Full Name" data-role="none" name="data[Profile][full_name]">
-                                        </div>
-                                        <div class='input-container'>
-                                                <div class="icon-ph"><i class="fa fa-envelope-o fa-fw"></i></div>
-                                  <input class="custom-text" type="text" placeholder="Email address" data-role="none" name="data[User][username]">
-                                        </div>
-                                        <div class='input-container'>
-                                                <div class="icon-ph"><i class="fa fa-phone fa-fw"></i></div>
-                                  <input class="custom-text" type="text" placeholder="Phone No" data-role="none" name="data[Profile][phone]">
-                                        </div>
-                                        <div class='input-container'>
-                                        <div class="icon-rh"><i class="fa fa-chevron-left fa-fw"></i></div>
-
-
-                                               <a href="dashboard.html" data-rel="back"><button type="submit" data-role="none" class="get-quote-back"></button></a>
-                                              <!-- <a href="profile.html" data-transition="slide"><button type="submit" data-role="none" class="get-quote-continue">Continue</button></a>-->
-                                              <button type="submit" data-role="none" class="get-quote-continue">Continue</button>
-
-                                        </div>                                       
-										
-                                        
-                    <input type="hidden" name='controller' value="Users"  />
-					<input type="hidden" name='action' value="register"  />	
-					<input type="hidden" name='callback' value="callbackRegister" />
-                    <input type="hidden" name="data[Member][member_id]" value="1" />
-                    
-
-                                </form>
-                                
-
+    	<div class="my-profile-bg content-position">                   
+			<h2>Registration Form</h2>
+        	<div id="result"></div>                                
+       		
+       		<form id="register" method="get" action="" onsubmit="return submitForm(this)">
+            	<div class="input-container">
+                    <div class="icon-ph"><i class="fa fa-bars fa-fw"></i></div>
+                    <input class="custom-text" type="text" placeholder="Full Name" data-role="none" name="data[Profile][full_name]">
+                </div>
+                <div class='input-container'>
+                    <div class="icon-ph"><i class="fa fa-envelope-o fa-fw"></i></div>
+                	<input class="custom-text" type="text" placeholder="Email address" data-role="none" name="data[User][username]">
+                </div>
+                <div class='input-container'>
+                    <div class="icon-ph"><i class="fa fa-phone fa-fw"></i></div>
+                	<input class="custom-text" type="text" placeholder="Phone No" data-role="none" name="data[Profile][phone]">
+                </div>
+                <div class='input-container'>
+                    <div class="icon-rh"><i class="fa fa-chevron-left fa-fw"></i></div>
+                    <a href="dashboard.html" data-rel="back"><button type="submit" data-role="none" class="get-quote-back"></button></a>
+                    <button type="submit" data-role="none" class="get-quote-continue">Continue</button>
+               	</div>                                       
+										                                        
+                <input type="hidden" name="controller" value="Users"  />
+				<input type="hidden" name="action" value="register"  />	
+				<input type="hidden" name="callback" value="callbackRegister" />
+                <input type="hidden" name="data[Member][member_id]" value="1" />
+       		</form> 
     </div>
                                 
                                 

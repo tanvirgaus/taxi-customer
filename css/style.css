@@ -358,4 +358,33 @@ cursor: pointer;
 	background: #F00
 	!important; opacity: 0.1;
 }
+
+.invalid {
+ border: 1px solid red;
+}
+
+.invalid-data, .err, .success {
+ font-style:italic;
+ font-size: .75em;
+ padding: 3px;
+}
+
+.err, .success, .invalid-data {
+ border: 1px solid #CC0000;
+ background-color: #FFEBEB;
+ color: #CC0000;
+}
+.err, .success {
+ padding: 7px;
+}
+.success {
+ color: #003300;
+ border-color: #003300;
+ background-color: #DEFFDE;
+}
+
+#result{
+	display:none;
+	margin-bottom:.5em;
+}
 	

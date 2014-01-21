@@ -169,14 +169,14 @@ function errorDialog() {
 /*   */
 function showMessage(data) {
 	setErrorMessages(data);
-	if(!empty(data.errMsg)) {
+	if(!empty(data.message)) {
 		$('#result').show();
-		if(data.error == false) {
-			$('#result').html(data.errMsg);
+		if(data.success == true) {
+			$('#result').html(data.message);
 			$('#result').removeClass('err');
 			$('#result').addClass('success');
 		} else {
-			$('#result').html(data.errMsg);
+			$('#result').html(data.message);
 			$('#result').removeClass('success');
 			$('#result').addClass('err');
 		}
