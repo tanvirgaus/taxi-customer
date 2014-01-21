@@ -143,7 +143,7 @@ function submitForm(formObj) {
 function getAjaxData(params, callback) {
 	controller 	= params['controller'];
 	action		= params['action'];
-	alert('here');
+	//alert('here');
 	$.ajax({
 		//beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
 		//complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner

@@ -26,19 +26,21 @@
 		</div>
 		<!-- InstanceBeginEditable name="EditableHeader" -->
 <script type="text/javascript">
-$(function () {
+/*$(function () {
 	params = [];
 	params['controller'] = 'Users';
 	params['action'] = 'login';
-//	getAjaxData(params, 'callbackLogin');
-});
+	getAjaxData(params, 'callbackLogin');
+});*/
 function callbackLogin(data) {
 	
 	if(data.error == false) {
 		//setLoginState(data);
-		location.replace('dashboard.html');
+		//location.replace('dashboard.html');
 	} else {
+		console.log(data);
 		showMessage(data);
+		//location.replace('index.html');
 	}
 }
 
