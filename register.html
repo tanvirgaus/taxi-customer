@@ -29,7 +29,7 @@
 
 		function callbackRegister(data) {
 			
-			if(data.status == false) {
+			if(data.success == true) {
 				//setLoginState(data);
 				//location.replace('dashboard.html');
 			} else {
@@ -73,6 +73,7 @@
                 <input type="hidden" name="controller" value="Users"  />
 				<input type="hidden" name="action" value="register"  />	
 				<input type="hidden" name="callback" value="callbackRegister" />
+                <input type="hidden" name="data[User][role]" value="customers" />
                 <input type="hidden" name="data[Member][member_id]" value="1" />
        		</form> 
     </div>

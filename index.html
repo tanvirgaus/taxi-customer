@@ -29,7 +29,7 @@
     
     function callbackLogin(data) {
         
-        if(data.error == false) {
+        if(data.success != false) {
             setLoginState(data);
             location.replace('dashboard.html');
         } else {
@@ -46,7 +46,8 @@
 		<!-- InstanceBeginEditable name="EditableBody" -->
 
 	<div class="my-profile-bg content-position"> 
-    	<h2>User Login</h2>                 
+    	<h2>User Login</h2>        
+             <div id="result"></div>         
         	<form id="login" method="post" action="" onsubmit="return submitForm(this)">
 
 					<div class='input-container'>

@@ -26,22 +26,30 @@
 			<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
 		</div>
 		<!-- InstanceBeginEditable name="EditableHeader" -->
-	  
-		<!-- InstanceEndEditable -->
-	</header>
-	<div data-role="none" id="content">
-		<!-- InstanceBeginEditable name="EditableBody" -->
-	  
-      
-      <script type="text/javascript">
-	  	$(document).ready(function() {
-        	$(".more-options-hidden, .panel-1").css("display","none");
-		});
-		$('.more-options').click(function(){
-			$(".more-options-hidden").slideToggle("8000");
-		});
-	  </script>
-		  <script> 
+	<script type="text/javascript">
+    
+    function callbackTarif(data) {
+        
+        if(data.success != false) {
+            console.log('yesss');
+            showMessage(data);
+        } else {
+            console.log('noooooooo');
+            showMessage(data);
+        }
+    }
+    
+    </script>
+
+	  	<script type="text/javascript">
+		  	$(document).ready(function() {
+	        	$(".more-options-hidden, .panel-1").css("display","none");
+			});
+			$('.more-options').click(function(){
+				$(".more-options-hidden").slideToggle("8000");
+			});
+	  	</script>
+		<script> 
     
             $(document).ready(function(){
             
@@ -54,104 +62,139 @@
             });
 
 		</script>
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-            <script>
+		<script type="text/javascript">
+		$(function(){
 
-            function inArray(needle, haystack) {
-    var length = haystack.length;
-    for(var i = 0; i < length; i++) {
-        if(haystack[i] == needle) return true;
-    }
-    return false;
-}
-      $(function(){
-        
-        $("#pickup").geocomplete()
-          .bind("geocode:result", function(event, result){
-            $.log("Result: " + result.formatted_address);
-          })
-          .bind("geocode:error", function(event, status){
-            $.log("ERROR: " + status);
-          })
-          .bind("geocode:multiple", function(event, results){
-            $.log("Multiple: " + results.length + " results found");
-          });
-		  
-		  $("#dropoff").geocomplete()
-          .bind("geocode:result", function(event, result){
-            $.log("Result: " + result.formatted_address);
-          })
-          .bind("geocode:error", function(event, status){
-            $.log("ERROR: " + status);
-          })
-          .bind("geocode:multiple", function(event, results){
-            $.log("Multiple: " + results.length + " results found");
-          });
-        
-        
-        $("#dist_button").click(function(){
-         	  
-		  var source = $('#pickup').val();
-		  var destination = $('#dropoff').val();
-		  
-		  alert(source+destination); 
-		  calculateDistances(source,destination);
+			function setQuoteData() {
 
+			  //alert( this.value ); // or $(this).val()
+				var src = $('#pickup').val();
+				var dst = $('#dropoff').val();
+				
+				//alert(src+dst); 
 
-        });
+				var src_convrt = src.replace(" ","+");
+				var dst_convrt = dst.replace(" ","+");
 
-		$("#my-locatipn").click(function(){
-			
-			getLocation();
-			
-			function getLocation(){
-				if (navigator.geolocation){
-					navigator.geolocation.getCurrentPosition(showPosition);
-				}
-			  	else{/*x.innerHTML="Geolocation is not supported by this browser.";*/
-					alert('Geolocation is not supported by this browser.');
-				}
-			}
-			
-			function showPosition(position){
-				console.log((position.coords.longitude));
-				$('#pickup').val('Your current location');
-				var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng=51.436951,0.058112&sensor=true';
-				//var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true';
-				 
-				  
-				 $.getJSON(address,function(result){
-					   	
-                    //console.log(result.results);    
+				var source_data = 'http://maps.googleapis.com/maps/api/geocode/json?address='+src_convrt+'&sensor=true';
+				var destination_data = 'http://maps.googleapis.com/maps/api/geocode/json?address='+dst_convrt+'&sensor=true';
+
+				var source_post_code;
+				var destination_post_code;
+
+				$.getJSON(source_data,function(result){
 				  	$.each(result.results, function(i, field){
-					
 						$.each(field.address_components, function(i, obj_type){
-
-
-                             if(inArray('postal_code_prefix',obj_type.types)||
+                            if(inArray('postal_code_prefix',obj_type.types)||
                              	 inArray('postal_code',obj_type.types)){
-
-
-                             	console.log(obj_type.short_name);
-                             }
-   
-
+                             		//source_post_code = obj_type.short_name;
+	                             	source_post_code =obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
+	                             	document.getElementById("from_post_code").value = new String(source_post_code);
+                             		console.log(source_post_code);
+                            }
 						});
-						
-											
-				  });
+					});
 				});
 
+				$.getJSON(destination_data,function(result){
+				  	$.each(result.results, function(i, field){
+						$.each(field.address_components, function(i, obj_type){
+                            if(inArray('postal_code_prefix',obj_type.types)||
+                             	 inArray('postal_code',obj_type.types)){
+                            		//destination_post_code = obj_type.short_name;
+                            		destination_post_code =obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
+                            		document.getElementById("to_post_code").value = new String(destination_post_code);
+                            		console.log(destination_post_code);
+                            }
+						});
+					});
+				});
+			});
+		}
+		</script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+        <script>
+	        function inArray(needle, haystack) {
+			    var length = haystack.length;
+			    for(var i = 0; i < length; i++) {
+			        if(haystack[i] == needle) return true;
+			    }
+			    return false;
+			}
+
+	      	$(function(){
+	        
+	        $("#pickup").geocomplete()
+	          .bind("geocode:result", function(event, result){
+	            $.log("Result: " + result.formatted_address);
+	          })
+	          .bind("geocode:error", function(event, status){
+	            $.log("ERROR: " + status);
+	          })
+	          .bind("geocode:multiple", function(event, results){
+	            $.log("Multiple: " + results.length + " results found");
+	          });
+			  
+			  $("#dropoff").geocomplete()
+	          .bind("geocode:result", function(event, result){
+	            $.log("Result: " + result.formatted_address);
+	          })
+	          .bind("geocode:error", function(event, status){
+	            $.log("ERROR: " + status);
+	          })
+	          .bind("geocode:multiple", function(event, results){
+	            $.log("Multiple: " + results.length + " results found");
+	          });
+
+        	
+        
+	        $("#get-quote-continue").click(function(){
+		        
+
+				//calculateDistances(source,destination);
+	        });
+
+/*			$("#my-locatipn").click(function(){
 				
-			 }
-		});
+				getLocation();
+				
+				function getLocation(){
+					if (navigator.geolocation){
+						navigator.geolocation.getCurrentPosition(showPosition);
+					}
+				  	else{x.innerHTML="Geolocation is not supported by this browser.";
+						alert('Geolocation is not supported by this browser.');
+					}
+				}
+				
+				function showPosition(position){
+					console.log((position.coords.longitude));
+					$('#pickup').val('Your current location');
+					//var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng=51.436951,0.058112&sensor=true';
+					//var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true';
+					 
+					  
+					$.getJSON(address,function(result){
+					  	$.each(result.results, function(i, field){
+							$.each(field.address_components, function(i, obj_type){
+	                            if(inArray('postal_code_prefix',obj_type.types)||
+	                             	 inArray('postal_code',obj_type.types)){
+	                             		console.log(obj_type.short_name);
+	                            }
+							});
+						});
+					});
+
+					
+				 }
+			});*/
         
 
         
       });
     </script>
     <script>
-		function calculateDistances(s,d) {
+		/*function calculateDistances(s,d) {
 		  var service = new google.maps.DistanceMatrixService();
 		  service.getDistanceMatrix(
 			{
@@ -186,32 +229,34 @@
 			  }
 			}
 		  }
-		}
+		}*/
     
     </script>
 
+		<!-- InstanceEndEditable -->
+	</header>
+	<div data-role="none" id="content">
+		<!-- InstanceBeginEditable name="EditableBody" -->
+    
 			 <div class="get-quote-bg content-position">
              
              	<h2>Get A Quote</h2>
                
-				<form  action="#" method="POST" enctype="multipart/form-data">
-
-
-
+				<form  action="" method="POST" enctype="multipart/form-data" onsubmit="setQuoteData(); return submitForm(this)">
                 
                     <div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-map-marker fa-fw"></i></div>
-                           <input class="custom-text" type="text" placeholder="Pickup Address?" data-role="none" id="pickup" >
+                           <input class="custom-text" type="text" placeholder="Pickup Address?" data-role="none" id="pickup">
                             <div class="icon-qh" id="my-locatipn"><i class="fa fa-search fa-fw"></i></div>                           
                     </div>
                     
 					<div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-location-arrow fa-fw"></i></div>
-                           <input class="custom-text" type="text" placeholder="Dropoff Address?" data-role="none" id="dropoff" >
+                           <input class="custom-text" type="text" placeholder="Dropoff Address?" data-role="none" id="dropoff">
                     </div>
                     
                     <div class='input-container'>
-                    		<select name="select-choice-e" id="" class="custom-text" data-role="none">
+                    		<select name="select-choice-e" id="taxi_type" class="custom-text" data-role="none" name="data[tarif][location_from]">
 								<option value="standard">Silver</option>
 								<option value="rush">Black</option>
 							</select>
@@ -220,19 +265,18 @@
                     <div class="icon-ph button-pointer"><i class="fa fa-chevron-left fa-fw"></i></div>
 
                            <input type="button" placeholder="Back" class="get-quote-back" data-role="none">
-                           <button type="submit" data-role="none" class="get-quote-continue">Continue</button>
+                           <button type="submit" data-role="none" class="get-quote-continue" id="get-quote-continue">Continue</button>
 
                     </div>  
+                    
+                    <input type="hidden" name='controller' value="Tarifs"  />
+					<input type="hidden" name='action' value="price"  />	
+					<input type="hidden" name='callback' value="callbackTarif" />
+					<input type="hidden" id="from_post_code" value="" name="data[tarif][location_from]" />
+					<input type="hidden" id="to_post_code" value="" name="data[tarif][location_to]" />
 
                     
-                    <div id="distance" class="ui-body" data-role="none" style="color: #000;">
-                    
-                    	<div class="ui-block" id="dist_button">
-                        <label>Distance</label>
-                        </div>
-                        <div class="ui-block" id="dist_result"></div>
-                    
-                    </div>
+
 <!--                   <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
              		<div class="panel-1"><label>Some features will be added here</label></div>-->
                     
