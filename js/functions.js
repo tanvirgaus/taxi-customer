@@ -114,6 +114,8 @@ function clearSessionStorage() {
 /* Global submit with JSONP */
 
 function submitForm(formObj) {
+
+	//console.log($(formObj).serialize());
 	
 	callback	= $('input[name="callback"]', formObj).val();
 	controller 	= $('input[name="controller"]', formObj).val();

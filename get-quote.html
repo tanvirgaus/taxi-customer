@@ -63,14 +63,16 @@
 
 		</script>
 		<script type="text/javascript">
-		$(function(){
+		
+		function setQuoteData(form) {
+		
+		//console.log(form);
+		//$(function(){
 
-			function setQuoteData() {
-
-			  //alert( this.value ); // or $(this).val()
+			   //alert( this.value ); // or $(this).val()
 				var src = $('#pickup').val();
 				var dst = $('#dropoff').val();
-				
+
 				//alert(src+dst); 
 
 				var src_convrt = src.replace(" ","+");
@@ -105,11 +107,23 @@
                             		destination_post_code =obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
                             		document.getElementById("to_post_code").value = new String(destination_post_code);
                             		console.log(destination_post_code);
+									
                             }
 						});
 					});
+					submitForm(form);
 				});
-			});
+
+				//params = {callback: 'callbackTarif', controller: 'Tarifs', action: 'price', location_from: source_post_code, location_to: destination_post_code};
+				//getAjaxData(params, 'callbackTarif');
+			//setTimeout(submitForm(form),2000);
+			
+			//submitForm(form);
+			//});
+			//console.log(form);
+			 
+			//console.log(form);
+			//return false;
 		}
 		</script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
@@ -193,46 +207,6 @@
         
       });
     </script>
-    <script>
-		/*function calculateDistances(s,d) {
-		  var service = new google.maps.DistanceMatrixService();
-		  service.getDistanceMatrix(
-			{
-			  origins: [s],
-			  destinations: [d],
-			  travelMode: google.maps.TravelMode.DRIVING,
-			  unitSystem: google.maps.UnitSystem.METRIC,
-			  avoidHighways: false,
-			  avoidTolls: false
-			}, callback);
-		}
-		
-		function callback(response, status) {
-		  if (status != google.maps.DistanceMatrixStatus.OK) {
-			  console.log();
-			alert('Error was: ' + status);
-		  } else {
-			var origins = response.originAddresses;
-			var destinations = response.destinationAddresses;
-			var outputDiv = document.getElementById('dist_result');
-			outputDiv.innerHTML = '';
-			//deleteOverlays();
-		
-			for (var i = 0; i < origins.length; i++) {
-			  var results = response.rows[i].elements;
-			  //addMarker(origins[i], false);
-			  for (var j = 0; j < results.length; j++) {
-				//addMarker(destinations[j], true);
-				outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
-					+ ':<br>' + results[j].distance.text + ' in '
-					+ results[j].duration.text + '<br>';
-			  }
-			}
-		  }
-		}*/
-    
-    </script>
-
 		<!-- InstanceEndEditable -->
 	</header>
 	<div data-role="none" id="content">
@@ -242,7 +216,7 @@
              
              	<h2>Get A Quote</h2>
                
-				<form  action="" method="POST" enctype="multipart/form-data" onsubmit="setQuoteData(); return submitForm(this)">
+				<form method="POST" enctype="multipart/form-data" onsubmit="return setQuoteData(this)">
                 
                     <div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-map-marker fa-fw"></i></div>
