@@ -31,8 +31,8 @@
     function callbackTarif(data) {
         
         if(data.success != false) {
-            console.log('yesss');
-            showMessage(data);
+			setLocalStorage('price',data.data.Tarif);
+			location.replace('review-offer.html');
         } else {
             console.log('noooooooo');
             showMessage(data);
@@ -43,6 +43,9 @@
 
 	  	<script type="text/javascript">
 		  	$(document).ready(function() {
+				
+				clearLocalStorage('price');
+				
 	        	$(".more-options-hidden, .panel-1").css("display","none");
 			});
 			$('.more-options').click(function(){
@@ -112,7 +115,12 @@
 						});
 					});
 					submitForm(form);
+					//console.log(data.data.Tarif.location_to);
 				});
+				
+				
+				//location.replace('review-offer.html');
+				//console.log(data.data.Tarif.location_to);
 
 				//params = {callback: 'callbackTarif', controller: 'Tarifs', action: 'price', location_from: source_post_code, location_to: destination_post_code};
 				//getAjaxData(params, 'callbackTarif');
@@ -123,7 +131,7 @@
 			//console.log(form);
 			 
 			//console.log(form);
-			//return false;
+			return false;
 		}
 		</script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
@@ -230,11 +238,27 @@
                     </div>
                     
                     <div class='input-container'>
-                    		<select name="select-choice-e" id="taxi_type" class="custom-text" data-role="none" name="data[tarif][location_from]">
-								<option value="standard">Silver</option>
-								<option value="rush">Black</option>
+                    		<select name="taxi-type" id="taxi_type" class="custom-text" data-role="none" name="data[tarif][location_from]">
+								<option value="Silver">Silver</option>
+								<option value="Black">Black</option>
+                               <option value="White">White</option>
 							</select>
                     </div>
+                    <div class='input-container'>
+                    		<select name="vheicle-type" id="taxi_type" class="custom-text" data-role="none" name="data[tarif][location_from]">
+								<option value="Sedan">Sedan</option>
+								<option value="Station_Wagon">Station Wagon</option>
+                               <option value="Micro">Micro</option>
+							</select>
+                    </div>
+                    <div class='input-container'>
+                       <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
+                       <div class="panel-1">
+	
+                                    <input type="checkbox" name="WheelCHair" data-role="none" />Check me
+                                    <input type="checkbox" name="WheelChair" data-role="none" />Check me
+                       </div>
+					</div>
                     <div class='input-container'>
                     <div class="icon-ph button-pointer"><i class="fa fa-chevron-left fa-fw"></i></div>
 
@@ -247,13 +271,7 @@
 					<input type="hidden" name='action' value="price"  />	
 					<input type="hidden" name='callback' value="callbackTarif" />
 					<input type="hidden" id="from_post_code" value="" name="data[tarif][location_from]" />
-					<input type="hidden" id="to_post_code" value="" name="data[tarif][location_to]" />
-
-                    
-
-<!--                   <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
-             		<div class="panel-1"><label>Some features will be added here</label></div>-->
-                    
+					<input type="hidden" id="to_post_code" value="" name="data[tarif][location_to]" />      
  
     			</form>
 			 </div>
