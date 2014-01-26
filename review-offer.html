@@ -19,14 +19,20 @@
 
 	$(document).ready(
 		function() {
-			
+			option = getLocalStorage('option');
 			price = getLocalStorage('price');
 			//alert(dump(price));
 			$('#from_address_out').text(price.location_from);
 			$('#to_address_out').text(price.location_to);
-			$('#rate_amount_out').text(price.peak_rate+"$");
+			$('#rate_amount_out').text(price.peak_rate);
+
 			
+			$('#vehichle_type_out').text(option.vehicle_type);
+			$('#taxi_type_out').text(option.taxi_type);
+			$('#baby_seat_out').text(option.baby_seat);
+			$('#wheel_chair_out').text(option.wheel_chair);
 			
+									
 			$('#job_form_location').val(price.location_from);
 			$('#job_to_location').val(price.location_to);
 			$('#job_calculated_fare').val(price.peak_rate);
@@ -41,9 +47,10 @@
         
         if(data.success != false) {
 			//setLocalStorage('price',data.data.Tarif);
-			//location.replace('review-offer.html');
-			submitForm(data);
-			return false;
+			
+			
+			location.replace('review-offer.html');
+			//return false;
         } else {
             console.log('noooooooo');
             showMessage(data);
@@ -74,13 +81,16 @@
                         <div align="center">Job Summary </div>
                         <ul>
                         	<li>From  <span id="from_address_out"></span> to <span id="to_address_out"></span> </li>
-							<!--<li>bla bla options</li>-->
+							<li>Vehicle Type: <span id="vehichle_type_out"></span></li>
+                            <li>Taxi Type: <span id="taxi_type_out"></span></li>
+                            <li>Baby Seat: <span id="baby_seat_out"></span></li>
+                            <li>Wheel Chair: <span id="wheel_chair_out"></span></li>
                             <li> RATE : <span id="rate_amount_out"></span> </li>
 
                         </ul> 
                     </div> 
                             
-				<form  action="#" method="POST" enctype="multipart/form-data" onSubmit="return callbackJob(this)">
+				<form  action="#" method="POST" enctype="multipart/form-data" onSubmit="return submitForm(this);">
                          <div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-money fa-fw"></i></div>
                             <input class="custom-text" type="text" placeholder="Offer another rate" data-role="none" name="data[job][customer_offer]">

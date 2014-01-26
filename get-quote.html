@@ -29,10 +29,17 @@
 	<script type="text/javascript">
     
     function callbackTarif(data) {
+					//alert(option);
         
         if(data.success != false) {
 			setLocalStorage('price',data.data.Tarif);
+			setLocalStorage('option',data.data);
+			console.log(data.data);
+			console.log(data.data.Tarif);
+			
 			location.replace('review-offer.html');
+			
+
         } else {
             console.log('noooooooo');
             showMessage(data);
@@ -69,14 +76,8 @@
 		
 		function setQuoteData(form) {
 		
-		//console.log(form);
-		//$(function(){
-
-			   //alert( this.value ); // or $(this).val()
 				var src = $('#pickup').val();
 				var dst = $('#dropoff').val();
-
-				//alert(src+dst); 
 
 				var src_convrt = src.replace(" ","+");
 				var dst_convrt = dst.replace(" ","+");
@@ -115,22 +116,10 @@
 						});
 					});
 					submitForm(form);
-					//console.log(data.data.Tarif.location_to);
+					alert('yes');
+
 				});
 				
-				
-				//location.replace('review-offer.html');
-				//console.log(data.data.Tarif.location_to);
-
-				//params = {callback: 'callbackTarif', controller: 'Tarifs', action: 'price', location_from: source_post_code, location_to: destination_post_code};
-				//getAjaxData(params, 'callbackTarif');
-			//setTimeout(submitForm(form),2000);
-			
-			//submitForm(form);
-			//});
-			//console.log(form);
-			 
-			//console.log(form);
 			return false;
 		}
 		</script>
@@ -167,52 +156,6 @@
 	          .bind("geocode:multiple", function(event, results){
 	            $.log("Multiple: " + results.length + " results found");
 	          });
-
-        	
-        
-	        $("#get-quote-continue").click(function(){
-		        
-
-				//calculateDistances(source,destination);
-	        });
-
-/*			$("#my-locatipn").click(function(){
-				
-				getLocation();
-				
-				function getLocation(){
-					if (navigator.geolocation){
-						navigator.geolocation.getCurrentPosition(showPosition);
-					}
-				  	else{x.innerHTML="Geolocation is not supported by this browser.";
-						alert('Geolocation is not supported by this browser.');
-					}
-				}
-				
-				function showPosition(position){
-					console.log((position.coords.longitude));
-					$('#pickup').val('Your current location');
-					//var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng=51.436951,0.058112&sensor=true';
-					//var address ='http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true';
-					 
-					  
-					$.getJSON(address,function(result){
-					  	$.each(result.results, function(i, field){
-							$.each(field.address_components, function(i, obj_type){
-	                            if(inArray('postal_code_prefix',obj_type.types)||
-	                             	 inArray('postal_code',obj_type.types)){
-	                             		console.log(obj_type.short_name);
-	                            }
-							});
-						});
-					});
-
-					
-				 }
-			});*/
-        
-
-        
       });
     </script>
 		<!-- InstanceEndEditable -->
@@ -238,14 +181,14 @@
                     </div>
                     
                     <div class='input-container'>
-                    		<select name="taxi-type" id="taxi_type" class="custom-text" data-role="none" name="data[tarif][location_from]">
+                    		<select id="taxi_type" class="custom-text" data-role="none" name="data[tarif][taxi_type]">
 								<option value="Silver">Silver</option>
 								<option value="Black">Black</option>
                                <option value="White">White</option>
 							</select>
                     </div>
                     <div class='input-container'>
-                    		<select name="vheicle-type" id="taxi_type" class="custom-text" data-role="none" name="data[tarif][location_from]">
+                    		<select id="taxi_type" class="custom-text" data-role="none" name="data[tarif][vehicle_type]">
 								<option value="Sedan">Sedan</option>
 								<option value="Station_Wagon">Station Wagon</option>
                                <option value="Micro">Micro</option>
@@ -255,15 +198,16 @@
                        <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
                        <div class="panel-1">
 	
-                                    <input type="checkbox" name="WheelCHair" data-role="none" />Check me
-                                    <input type="checkbox" name="WheelChair" data-role="none" />Check me
+                                    <input type="checkbox" name="data[tarif][baby_seat]" data-role="none" />Baby Seat
+                                    <input type="checkbox" name="data[tarif][wheel_chair]" data-role="none" />Wheel Chair
                        </div>
 					</div>
                     <div class='input-container'>
                     <div class="icon-ph button-pointer"><i class="fa fa-chevron-left fa-fw"></i></div>
 
                            <input type="button" placeholder="Back" class="get-quote-back" data-role="none">
-                           <button type="submit" data-role="none" class="get-quote-continue" id="get-quote-continue">Continue</button>
+ <button type="submit" data-role="none" class="get-quote-continue" id="get-quote-continue">Continue</button>
+                           <!--<a href="review-offer.html" data-transition="flip" style="color:#FFF"> <button type="submit" data-role="none" class="get-quote-continue" id="get-quote-continue">Continue</button></a> -->
 
                     </div>  
                     
