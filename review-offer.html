@@ -43,6 +43,9 @@
 			$('#job_baby_seat').val(option.baby_seat);
 			$('#job_wheel_chair').val(option.wheel_chair);
 			
+			$('#current_location_latitude').val(option.current_lat);
+			$('#current_location_longitude').val(option.current_lng);
+			
 		}
 	);
     </script>
@@ -50,11 +53,11 @@
     	<script type="text/javascript">
     
     function callbackJob(data) {
-        
+        alert('yes');
         if(data.success != false) {
 			//setLocalStorage('price',data.data.Tarif);
 			
-			
+			//alert(data.message);
 			location.replace('hire-taxi.html');
 			//return false;
         } else {
@@ -96,7 +99,7 @@
                         </ul> 
                     </div> 
                             
-				<form  action="#" method="POST" enctype="multipart/form-data" onSubmit="return submitForm(this);">
+				<form  action="#" method="POST" enctype="multipart/form-data" onSubmit="return submitForm(this)">
                          <div class='input-container'>
                             <div class="icon-ph"><i class="fa fa-money fa-fw"></i></div>
                             <input class="custom-text" type="text" placeholder="Offer another rate" data-role="none" name="data[job][customer_offer]">
@@ -116,7 +119,9 @@
                     <input type="hidden" id="job_taxi_type" value="" name="data[job][taxi_type]" />                   
                     <input type="hidden" id="job_vehicle_type" value="" name="data[job][vehicle_type]" />
                     <input type="hidden" id="job_baby_seat" value="" name="data[job][baby_seat]" /> 
-                    <input type="hidden" id="job_wheel_chair" value="" name="data[job][wheel_chair]" />                                      
+                    <input type="hidden" id="job_wheel_chair" value="" name="data[job][wheel_chair]" /> 
+                    <input type="hidden" id="current_location_latitude" value="" name="data[job][current_lat]" /> 
+					<input type="hidden" id="current_location_longitude" value="" name="data[job][current_lng]" />                                     
                       </div> 
     			</form>
 			 </div>
