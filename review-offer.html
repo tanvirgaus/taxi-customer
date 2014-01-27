@@ -37,6 +37,12 @@
 			$('#job_to_location').val(price.location_to);
 			$('#job_calculated_fare').val(price.peak_rate);
 			
+			
+			$('#job_vehicle_type').val(option.vehicle_type);
+			$('#job_taxi_type').val(option.taxi_type);
+			$('#job_baby_seat').val(option.baby_seat);
+			$('#job_wheel_chair').val(option.wheel_chair);
+			
 		}
 	);
     </script>
@@ -49,7 +55,7 @@
 			//setLocalStorage('price',data.data.Tarif);
 			
 			
-			location.replace('review-offer.html');
+			location.replace('hire-taxi.html');
 			//return false;
         } else {
             console.log('noooooooo');
@@ -107,7 +113,10 @@
 					<input type="hidden" id="job_form_location" value="" name="data[job][location_from]" />
 					<input type="hidden" id="job_to_location" value="" name="data[job][location_to]" />
                     <input type="hidden" id="job_calculated_fare" value="" name="data[job][calculated_fare]" />
-
+                    <input type="hidden" id="job_taxi_type" value="" name="data[job][taxi_type]" />                   
+                    <input type="hidden" id="job_vehicle_type" value="" name="data[job][vehicle_type]" />
+                    <input type="hidden" id="job_baby_seat" value="" name="data[job][baby_seat]" /> 
+                    <input type="hidden" id="job_wheel_chair" value="" name="data[job][wheel_chair]" />                                      
                       </div> 
     			</form>
 			 </div>
