@@ -86,9 +86,10 @@
 						// Your GCM push server needs to know the regID before it can push to this device
 						// here is where you might want to send it the regID for later use.
 						console.log("regID = " + e.regid);
-						params = [{controller: 'Jobs', action: 'appid', data:e.regid }];
-						getAjaxData(params, callback);
-						alert(callback);
+						//params = [{controller: 'Jobs', action: 'appid', data:e.regid }];
+						//getAjaxData(params, callback);
+						//alert(callback);
+						$('#appid').val(e.regid);
 						
 					}
                     break;
@@ -148,6 +149,17 @@
 				<ul id="app-status-ul">
 					<li>Cordova PushNotification Plugin Demo</li>
 				</ul>
+               <form id="login" method="post" action="" onsubmit="return submitForm(this)">
+                    <input type="hidden" name='controller' value="Jobs"  />
+					<input type="hidden" name='action' value="appid"  />	
+					<input type="hidden" name='callback' value="callbackAppid" />
+                    <input type="hidden" name='getAppId' value="" id="appid" />
+                    																	
+			
+					<button type="submit" class="login-width" data-role="none">Send app id</button>
+
+
+            </form>
 			</div>
 		</div>
     </body>
