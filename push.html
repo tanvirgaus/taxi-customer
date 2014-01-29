@@ -89,7 +89,27 @@
 						//params = [{controller: 'Jobs', action: 'appid', data:e.regid }];
 						//getAjaxData(params, callback);
 						//alert(callback);
-						$('#appid').val(e.regid);
+						//$('#appid').val(e.regid);
+						
+						
+						window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+						
+						function gotFS(fileSystem) {
+							fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+						}
+					
+						function gotFileEntry(fileEntry) {
+							fileEntry.createWriter(gotFileWriter, fail);
+						}
+					
+						function gotFileWriter(writer) {
+							writer.write(e.regid);
+						}
+						
+						function fail(error) {
+							console.log(error.code, "false");
+						}
+						
 						
 					}
                     break;
