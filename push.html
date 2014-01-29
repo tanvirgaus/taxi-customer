@@ -12,7 +12,7 @@
         <script src="cordova.js"></script>
 		<script src="PushNotification.js"></script>
         
-        
+        <script src="js/functions.js"></script>
         <script type="text/javascript">
             var pushNotification;
             
@@ -86,6 +86,15 @@
 						// Your GCM push server needs to know the regID before it can push to this device
 						// here is where you might want to send it the regID for later use.
 						console.log("regID = " + e.regid);
+						$.ajax({
+						  type: "POST",
+						  url: "http://dev.smart-catalog.com.au/uk/taxi-app/services/Jobs/appid",
+						  data: { name: e.regid}
+						})
+						  .done(function( msg ) {
+							alert( "Data Saved: " + msg );
+						  });
+						
 					}
                     break;
                     
