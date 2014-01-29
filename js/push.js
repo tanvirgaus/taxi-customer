@@ -13,6 +13,7 @@
 						//pushNotification.unregister(successHandler, errorHandler);
 						e.preventDefault();
 						navigator.app.exitApp();
+						//alert(navigator);
 					}
 					else
 					{
