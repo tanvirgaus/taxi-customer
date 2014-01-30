@@ -52,6 +52,7 @@
                     	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
                 	}
 					alert(device.platform);
+					pushNotification.setApplicationIconBadgeNumber(this.successHandler, 0);
                 }
 				catch(err) 
 				{ 
