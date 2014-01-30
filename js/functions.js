@@ -145,7 +145,7 @@ function submitForm(formObj) {
 function getAjaxData(params, callback) {
 	controller 	= params['controller'];
 	action		= params['action'];
-	ajaxData = params.serialize(); /*$.param(params);*/ 
+	ajaxData =  $.param(params); /*params.serialize();*/ 
 	alert(ajaxData);
 	$.ajax({
 		//beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner

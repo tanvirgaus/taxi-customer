@@ -15,6 +15,12 @@
         <script type="text/javascript">
             var pushNotification;
             
+			function callbackAppid(data) {
+				alert('Posted successfully');
+							
+			}	
+            // handle GCM notifications for Android
+			
             function onDeviceReady() {
                 $("#app-status-ul").append('<li>deviceready event received</li>');
                 
@@ -71,11 +77,7 @@
                     pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
                 }
             }
-            function callbackAppid(data) {
-				alert('Posted successfully');
-							
-			}	
-            // handle GCM notifications for Android
+
             function onNotificationGCM(e) {
                 $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
                 
