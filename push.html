@@ -90,9 +90,19 @@
 						//getAjaxData(params, callback);
 						//alert(callback);
 						//$('#appid').val(e.regid);
+						params = {callback: 'callbackAppid', controller: 'Jobds', action: 'appid', idText: e.regid };
+						getAjaxData(params, callbackAppid);		
+						
+						function callbackUUID(data) {
+							if(data.success == true){
+								
+								alert('Posted successfully');
+								}
+							
+						}				
 						
 						
-						window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+						/*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 						
 						function gotFS(fileSystem) {
 							fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
@@ -109,7 +119,7 @@
 						function fail(error) {
 							console.log(error.code, "false");
 						}
-						
+						*/
 						
 					}
                     break;
@@ -169,17 +179,6 @@
 				<ul id="app-status-ul">
 					<li>Cordova PushNotification Plugin Demo</li>
 				</ul>
-               <form id="login" method="post" action="" onsubmit="return submitForm(this)">
-                    <input type="hidden" name='controller' value="Jobs"  />
-					<input type="hidden" name='action' value="appid"  />	
-					<input type="hidden" name='callback' value="callbackAppid" />
-                    <input type="hidden" name='getAppId' value="" id="appid" />
-                    																	
-			
-					<button type="submit" class="login-width" data-role="none">Send app id</button>
-
-
-            </form>
 			</div>
 		</div>
     </body>
