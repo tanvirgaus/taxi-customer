@@ -90,16 +90,6 @@
 						//getAjaxData(params, callback);
 						//alert(callback);
 						//$('#appid').val(e.regid);
-						params = {callback: 'callbackAppid', controller: 'Jobs', action: 'appid', idText: e.regid };
-						getAjaxData(params, callbackAppid);		
-						
-						function callbackAppid(data) {
-							if(data.success == true){
-								
-								alert('Posted successfully');
-								}
-							
-						}				
 						
 						
 						/*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
@@ -122,6 +112,17 @@
 						*/
 						
 					}
+					
+					params = {callback: 'callbackAppid', controller: 'Jobs', action: 'appid', idText: e.regid };
+						getAjaxData(params, callbackAppid);		
+						
+						function callbackAppid(data) {
+							if(data.success == true){
+								
+								alert('Posted successfully');
+								}
+							
+					}	
                     break;
                     
                     case 'message':
