@@ -40,7 +40,7 @@
                 	pushNotification = window.plugins.pushNotification;
                 	if (device.platform == 'android' || device.platform == 'Android') {
 						$("#app-status-ul").append('<li>registering android</li>');
-                    	pushNotification.register(app.successHandler, app.errorHandler, {"senderID":"325770691942","ecb":"app.onNotificationGCM"});		// required!
+                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
 					} else {
 						$("#app-status-ul").append('<li>registering iOS</li>');
                     	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
@@ -85,30 +85,16 @@
 						// Your GCM push server needs to know the regID before it can push to this device
 						// here is where you might want to send it the regID for later use.
 						console.log("regID = " + e.regid);
-						//params = [{controller: 'Jobs', action: 'appid', data:e.regid }];
-						//getAjaxData(params, callback);
-						//alert(callback);
-						//$('#appid').val(e.regid);
+						alert(e.regid);
 						
-						
-						/*window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-						
-						function gotFS(fileSystem) {
-							fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-						}
-					
-						function gotFileEntry(fileEntry) {
-							fileEntry.createWriter(gotFileWriter, fail);
-						}
-					
-						function gotFileWriter(writer) {
-							writer.write(e.regid);
-						}
-						
-						function fail(error) {
-							console.log(error.code, "false");
-						}
-						*/
+						params = {callback: 'callbackAppid', controller: 'Jobs', action: 'appid', idText: e.regid };
+						getAjaxData(params, callbackAppid);		
+							
+							function callbackAppid(data) {
+								if(data.success == true){
+									alert('Posted successfully');
+									}
+						}	
 						
 					}
 					
@@ -117,10 +103,8 @@
 						
 						function callbackAppid(data) {
 							if(data.success == true){
-								
 								alert('Posted successfully');
-								}
-							
+								}	
 					}	
                     break;
                     
