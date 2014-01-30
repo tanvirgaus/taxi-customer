@@ -145,14 +145,15 @@ function submitForm(formObj) {
 function getAjaxData(params, callback) {
 	controller 	= params['controller'];
 	action		= params['action'];
-	//alert('here');
+	ajaxData = $.param(params);//params.serialize();
+	alert(ajaxData);
 	$.ajax({
 		//beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
 		//complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner
 		url: serviceURL + controller + '/' + action,
 		crossDomain: true,
 		cache: true,
-		data: $.param(params),
+		data: ajaxData,
 		dataType: "jsonp",
 		jsonp : false,
 		jsonpCallbackString: 'callback',
