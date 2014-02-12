@@ -29,13 +29,16 @@
     
     function callbackLogin(data) {
         
-        if(data.success != false) {
+        if(data.success == true && data.data != null) {
+			//alert(1222);
             setLoginState(data);
             location.replace('dashboard.html');
-        } else {
-            console.log(data);
-            showMessage(data);
+        } else if (data.success == true && data.data == null ){
+            //console.log(data);
+            //showMessage(data);
             //location.replace('index.html');
+			alert('No user found, give correct login info');
+			
         }
     }
     
@@ -58,10 +61,7 @@
                             <div class="icon-ph"><i class="fa fa-key fa-fw"></i></div>
                            <input class="custom-text" type="password" placeholder="Password" name="data[User][password]" data-role="none">
                     </div>
-                    
-                    
-                    
-                    
+ 
                     <input type="hidden" name='controller' value="Users"  />
 					<input type="hidden" name='action' value="login"  />	
 					<input type="hidden" name='callback' value="callbackLogin" />

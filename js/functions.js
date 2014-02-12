@@ -11,7 +11,7 @@ if(loc.search("taxi-customer") != -1){
 }
 
 var pageTitle		= '';
-var nonSecurePages	= ["index.html","forgot-password.html","registration.html"];
+var nonSecurePages	= ["index.html","forgot-password.html","register.html"];
 
 var User = null;
 	$(document).bind("mobileinit", function(){
@@ -29,7 +29,12 @@ var User = null;
 /* Set login State*/
 function setLoginState(data) {
 	setLocalStorage("loggedin", "yes");
-	setLocalStorage("User", data.User[0]);
+	
+	// Commented for further use and testingv
+	
+	//setLocalStorage("User", data.User[0]);
+	
+	setLocalStorage("User", data.data);
 	getLoginState();
 }
 /* Get login State */
@@ -56,6 +61,7 @@ function allowAccess()
 	User = getLocalStorage("User");
 	if(!empty(User)) { 
 		userToken = User.token;
+		console.log(userToken);
 	} else {
 		userToken = null;	
 	}

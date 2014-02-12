@@ -15,23 +15,12 @@
 	<script src="js/functions.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
     <script type="text/javascript">
-    $(function(){
-			
+	$( document ).ready(function() {
+			console.log( "ready!" );
+			allowAccess();
 	});
 	
 	
-	
-		function callbackLogin(data) {
-			
-			if(data.success != false) {
-				setLoginState(data);
-				location.replace('dashboard.html');
-			} else {
-				console.log(data);
-				showMessage(data);
-				//location.replace('index.html');
-			}
-		}
 		
     </script>
 	<!-- InstanceEndEditable --> 

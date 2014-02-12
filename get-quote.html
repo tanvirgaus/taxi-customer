@@ -15,6 +15,12 @@
 	<script src="js/functions.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
     <script src="js/jquery.geocomplete.js"></script>
+        <script type="text/javascript">
+	$( document ).ready(function() {
+			//allowAccess();
+	});
+	
+    </script>
 	<!-- InstanceEndEditable --> 
 </head>
 
@@ -29,17 +35,10 @@
 	<script type="text/javascript">
     
     function callbackTarif(data) {
-					//alert(option);
-        
         if(data.success != false) {
 			setLocalStorage('price',data.data.Tarif);
 			setLocalStorage('option',data.data);
-			console.log(data.data);
-			console.log(data.data.Tarif);
-			
 			location.replace('review-offer.html');
-			//return false;
-
         } else {
             console.log('noooooooo');
             showMessage(data);
@@ -49,29 +48,21 @@
     </script>
 
 	  	<script type="text/javascript">
-		  	$(document).ready(function() {
-				
-				clearLocalStorage('price');
-				
+		  	$(document).ready(function() {	
+				allowAccess();
+			
 	        	$(".more-options-hidden, .panel-1").css("display","none");
+				
+				$('.more-options').click(function(){ $(".more-options-hidden").slideToggle("8000"); });
+				
+				$(".flip-1").click(function(){ $(".panel-1").fadeToggle(1000); });
 			});
-			$('.more-options').click(function(){
-				$(".more-options-hidden").slideToggle("8000");
-			});
-	  	</script>
-		<script> 
-    
-            $(document).ready(function(){
-            
-            $(".flip-1").click(function(){
-            
-            $(".panel-1").fadeToggle(1000);
-            
-            });
-            
-            });
+			
+			
+			
 
-		</script>
+	  	</script>
+
 		<script type="text/javascript">
 		
 		function setQuoteData(form) {
