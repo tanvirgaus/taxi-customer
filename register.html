@@ -25,32 +25,23 @@
 			<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
 		</div>
 		<!-- InstanceBeginEditable name="EditableHeader" -->
-	  <script type="text/javascript">
-	  
-
-	$( document ).ready(function() {
-			console.log( "ready!" );
-			allowAccess();
+	<script type="text/javascript">
+	$(document).ready(function() {
+		allowAccess();
 	});
 	
-	
+	function callbackRegister(data) {
+		if(data.success == true) {
+			setLoginState(data);
+			location.replace('dashboard.html');
+		} else {
+			console.log(data);
+			showMessage(data);
+		}
+	}
 		
     </script>
-
-		function callbackRegister(data) {
-			
-			if(data.success == true) {
-				//setLoginState(data);
-				//location.replace('dashboard.html');
-			} else {
-				console.log(data);
-				showMessage(data);
-				//location.replace('index.html');
-			}
-		}
-		
-		</script>
-      
+   
       
 		<!-- InstanceEndEditable -->
 	</header>
@@ -83,8 +74,10 @@
                 <input type="hidden" name="controller" value="Users"  />
 				<input type="hidden" name="action" value="register"  />	
 				<input type="hidden" name="callback" value="callbackRegister" />
-                <input type="hidden" name="data[User][role]" value="customers" />
+                <input type="hidden" name="data[User][role]" value="customer" />
                 <input type="hidden" name="data[Member][member_id]" value="1" />
+				<input type="hidden" name="data[User][password]" value="U123" />
+				
        		</form> 
     </div>
                                 

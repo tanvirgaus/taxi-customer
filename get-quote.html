@@ -14,56 +14,30 @@
 	<script src="cordova.js"></script>
 	<script src="js/functions.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script src="js/jquery.geocomplete.js"></script>
-        <script type="text/javascript">
-	$( document ).ready(function() {
-			//allowAccess();
-	});
-	
-    </script>
-	<!-- InstanceEndEditable --> 
-</head>
-
-<body>
-	<div data-role="page">
-	<div id="page">
-	<header data-role="none">
-		<div id="header-logo">
-			<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
-		</div>
-		<!-- InstanceBeginEditable name="EditableHeader" -->
-	<script type="text/javascript">
-    
-    function callbackTarif(data) {
-        if(data.success != false) {
-			setLocalStorage('price',data.data.Tarif);
-			setLocalStorage('option',data.data);
-			location.replace('review-offer.html');
-        } else {
-            console.log('noooooooo');
-            showMessage(data);
-        }
-    }
-    
-    </script>
-
-	  	<script type="text/javascript">
-		  	$(document).ready(function() {	
-				allowAccess();
+    <script type="text/javascript">
+		$(document).ready(function() {	
+			allowAccess();
+			//if(window.location.href.indexOf('?reloaded') === -1) window.location.href = window.location.href + "?reloaded=true";
 			
-	        	$(".more-options-hidden, .panel-1").css("display","none");
-				
-				$('.more-options').click(function(){ $(".more-options-hidden").slideToggle("8000"); });
-				
-				$(".flip-1").click(function(){ $(".panel-1").fadeToggle(1000); });
-			});
-			
-			
-			
-
-	  	</script>
-
-		<script type="text/javascript">
+	       	$(".more-options-hidden, .panel-1").css("display","none");
+			$('.more-options').click(function(){ $(".more-options-hidden").slideToggle("8000"); });
+			$(".flip-1").click(function(){ $(".panel-1").fadeToggle(1000); });
+			$("#pickup").geocomplete().bind("geocode:result", function(event, result){ $.log("Result: " + result.formatted_address); }).bind("geocode:error", function(event, status){ $.log("ERROR: " + status); }).bind("geocode:multiple", function(event, results){ $.log("Multiple: " + results.length + " results found"); });
+			$("#dropoff").geocomplete().bind("geocode:result", function(event, result){ $.log("Result: " + result.formatted_address); }).bind("geocode:error", function(event, status){ $.log("ERROR: " + status); }).bind("geocode:multiple", function(event, results){ $.log("Multiple: " + results.length + " results found"); })
+		});
+		
+		function callbackTarif(data) {
+			if(data.success != false) {
+				setLocalStorage('price',data.data.Tarif);
+				setLocalStorage('option',data.data);
+				location.replace('review-offer.html');
+			} else {
+				console.log('noooooooo');
+				showMessage(data);
+			}
+		}
 		
 		function setQuoteData(form) {
 		
@@ -86,10 +60,8 @@
 						$.each(field.address_components, function(i, obj_type){
                             if(inArray('postal_code_prefix',obj_type.types)||
                              	 inArray('postal_code',obj_type.types)){
-                             		//source_post_code = obj_type.short_name;
 	                             	source_post_code =obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
 	                             	document.getElementById("from_post_code").value = new String(source_post_code);
-                             		console.log(source_post_code);
                             }
 						});
 						
@@ -110,57 +82,41 @@
 						$.each(field.address_components, function(i, obj_type){
                             if(inArray('postal_code_prefix',obj_type.types)||
                              	 inArray('postal_code',obj_type.types)){
-                            		//destination_post_code = obj_type.short_name;
                             		destination_post_code =obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
                             		document.getElementById("to_post_code").value = new String(destination_post_code);
-                            		console.log(destination_post_code);
-									
+							
                             }
 						});
 					});
 					submitForm(form);
-					alert('yes');
-
 				});
 				
 			return false;
 		}
-		</script>
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-        <script>
-	        function inArray(needle, haystack) {
-			    var length = haystack.length;
-			    for(var i = 0; i < length; i++) {
-			        if(haystack[i] == needle) return true;
-			    }
-			    return false;
+		
+		function inArray(needle, haystack) {
+			var length = haystack.length;
+			
+			for(var i = 0; i < length; i++) {
+			    if(haystack[i] == needle) return true;
 			}
-
-	      	$(function(){
-	        
-	        $("#pickup").geocomplete()
-	          .bind("geocode:result", function(event, result){
-	            $.log("Result: " + result.formatted_address);
-	          })
-	          .bind("geocode:error", function(event, status){
-	            $.log("ERROR: " + status);
-	          })
-	          .bind("geocode:multiple", function(event, results){
-	            $.log("Multiple: " + results.length + " results found");
-	          });
-			  
-			  $("#dropoff").geocomplete()
-	          .bind("geocode:result", function(event, result){
-	            $.log("Result: " + result.formatted_address);
-	          })
-	          .bind("geocode:error", function(event, status){
-	            $.log("ERROR: " + status);
-	          })
-	          .bind("geocode:multiple", function(event, results){
-	            $.log("Multiple: " + results.length + " results found");
-	          });
-      });
+			return false;
+		}
     </script>
+	
+
+	<!-- InstanceEndEditable --> 
+</head>
+
+<body>
+	<div data-role="page">
+	<div id="page">
+	<header data-role="none">
+		<div id="header-logo">
+			<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
+		</div>
+		<!-- InstanceBeginEditable name="EditableHeader" -->
+
 		<!-- InstanceEndEditable -->
 	</header>
 	<div data-role="none" id="content">

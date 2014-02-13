@@ -15,10 +15,8 @@
 	<script src="js/functions.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
     <script type="text/javascript">
-	
 
-	$(document).ready(
-		function() {
+		$(document).ready(function(){
 
 			allowAccess();
 
@@ -49,28 +47,19 @@
 			$('#current_location_latitude').val(option.current_lat);
 			$('#current_location_longitude').val(option.current_lng);
 			
+		});
+		
+		function callbackJob(data) {
+			if(data.success == true) {			
+				alert('Job posted');
+				location.replace('hire-taxi.html');
+			} else {
+				console.log('noooooooo');
+				showMessage(data);
+			}
 		}
-	);
     </script>
-    
-    	<script type="text/javascript">
-    
-    function callbackJob(data) {
-        alert('yes');
-        if(data.success != false) {
-			//setLocalStorage('price',data.data.Tarif);
-			
-			//alert(data.message);
-			location.replace('hire-taxi.html');
-			//return false;
-        } else {
-            console.log('noooooooo');
-            showMessage(data);
-        }
-    }
-    
-    </script>
-	<!-- InstanceEndEditable --> 
+<!-- InstanceEndEditable --> 
 </head>
 
 <body>

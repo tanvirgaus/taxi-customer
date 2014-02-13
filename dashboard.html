@@ -15,13 +15,16 @@
 	<script src="js/functions.js"></script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
     <script type="text/javascript">
-    
-	$( document ).ready(function() {
-			console.log( "ready!" );
+		$( document ).ready(function() {
 			allowAccess();
-	});
-    
+			
+			$("#logout").click(function(){
+				logout();
+			});
+		});
     </script>
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<script src="js/jquery.geocomplete.js"></script>
 	<!-- InstanceEndEditable --> 
 </head>
 
@@ -41,7 +44,7 @@
 	  
 			 <div class="tile mini get-quote-bg">
              	
-				<a href="get-quote.html" data-role="none">
+				<a href="get-quote.html" rel="external">
                 <div class="tile-box">
 					<img src="images/taxi.png" alt="Get a Qoute">
                 </div>
@@ -63,7 +66,7 @@
 				</div>
 			</div>
 			<div class="tile mini sign-out-bg">
-				<a href="logout.html" data-transition="flip"></a>
+				<a href="logout.html" data-transition="flip" id="logout"></a>
 				<div class="tile-box">
 				<i class="fa fa-sign-out fa-4x"></i>
 				<div>Sign Out</div>
