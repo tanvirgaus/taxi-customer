@@ -4,7 +4,7 @@ xmlns:gap = "http://phonegap.com/ns/1.0"
 id        = "com.taxicab"
 version   = "0.0.2">
 
-	<name>Taxi Mobi</name>
+	<name>Taxi-Client</name>
 	<description>Get a Taxi</description>
 	<author href="http://smart-catalog.com.au" email="tanvir.gaus@gmail.com">Taxi.mobi</author>
 
@@ -27,7 +27,7 @@ version   = "0.0.2">
 	
 	<gap:plugin name="org.apache.cordova.device" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
-	<plugin name="Client'sAPP" value="com.phonegap.Client"/>
+	<plugin name="Client'sAPP" value="com.zahid.Client"/>
 
 
 	<!--
