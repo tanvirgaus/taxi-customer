@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
-xmlns:gap = "http://phonegap.com/ns/1.0"
-id        = "com.Client"
-version   = "0.0.2">
+	xmlns:gap = "http://phonegap.com/ns/1.0"
+	id        = "com.taxiapp.client"
+	version   = "0.0.3">
 
-	<name>Taxi-Client</name>
-	<description>Get a Taxi</description>
+	<name>Taxi-Mobi</name>
+	<description>Taxi in minutes</description>
 	<author href="http://smart-catalog.com.au" email="tanvir.gaus@gmail.com">Taxi.mobi</author>
 
 	<feature name="http://api.phonegap.com/1.0/device" />
@@ -27,7 +27,6 @@ version   = "0.0.2">
 	
 	<gap:plugin name="org.apache.cordova.device" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
-	<plugin name="Client'sAPP" value="com.zahid.Client"/>
 
 
 	<!--
