@@ -13,14 +13,20 @@
     <script src="js/logger.js"></script>
 	<script src="cordova.js"></script>
 	<script src="js/functions.js"></script>
+    <script type="text/javascript">
+	$( document ).ready(function() {
+	 allowAccess();
+		 $(document).on( 'pagecreate','#page', function(event){
+		  setUserToken();
+		 });
+	});
+ 	</script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
     <script src="js/jquery.geocomplete.js"></script>
     <script type="text/javascript">
 		$(document).ready(function() {	
-			allowAccess();
-			//if(window.location.href.indexOf('?reloaded') === -1) window.location.href = window.location.href + "?reloaded=true";
-			
+						
 	       	$(".more-options-hidden, .panel-1").css("display","none");
 			$('.more-options').click(function(){ $(".more-options-hidden").slideToggle("8000"); });
 			$(".flip-1").click(function(){ $(".panel-1").fadeToggle(1000); });

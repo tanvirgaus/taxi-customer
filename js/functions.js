@@ -55,6 +55,7 @@ function logout() {
  */
 function allowAccess()
 {
+	//alert('allow access working');
 	var sPath = window.location.pathname; 
 	var sPage = sPath.substring(sPath.lastIndexOf('/') + 1); 
 	filename = sPage.toLowerCase();

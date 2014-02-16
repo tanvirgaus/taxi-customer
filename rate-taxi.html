@@ -13,16 +13,15 @@
     <script src="js/logger.js"></script>
 	<script src="cordova.js"></script>
 	<script src="js/functions.js"></script>
-	<!-- InstanceBeginEditable name="EditableHead" -->
-        <script type="text/javascript">
+    <script type="text/javascript">
 	$( document ).ready(function() {
-			console.log( "ready!" );
-			allowAccess();
+	 allowAccess();
+		 $(document).on( 'pagecreate','#page', function(event){
+		  setUserToken();
+		 });
 	});
-	
-	
-		
-    </script>
+ 	</script>
+	<!-- InstanceBeginEditable name="EditableHead" -->
 	<!-- InstanceEndEditable --> 
 </head>
 

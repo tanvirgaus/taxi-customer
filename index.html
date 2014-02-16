@@ -13,6 +13,14 @@
     <script src="js/logger.js"></script>
 	<script src="cordova.js"></script>
 	<script src="js/functions.js"></script>
+    <script type="text/javascript">
+	$( document ).ready(function() {
+	 allowAccess();
+		 $(document).on( 'pagecreate','#page', function(event){
+		  setUserToken();
+		 });
+	});
+ 	</script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
 	<!-- InstanceEndEditable --> 
 </head>
@@ -26,22 +34,14 @@
 		</div>
 		<!-- InstanceBeginEditable name="EditableHeader" -->
 	<script type="text/javascript">
-    
     function callbackLogin(data) {
-        
         if(data.success == true && data.data != null) {
-			//alert(1222);
             setLoginState(data);
             location.replace('dashboard.html');
         } else if (data.success == true && data.data == null ){
-            //console.log(data);
-            //showMessage(data);
-            //location.replace('index.html');
 			alert('No user found, give correct login info');
-			
-        }
+		}
     }
-    
     </script>
 		<!-- InstanceEndEditable -->
 	</header>
