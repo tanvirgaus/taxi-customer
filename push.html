@@ -52,7 +52,7 @@
 						$("#app-status-ul").append('<li>registering iOS</li>');
                     	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
                 	}
-					alert(device.platform);
+					//alert(device.platform);
 
                 }
 				catch(err) 
@@ -91,13 +91,10 @@
 						params = {callback: 'callbackAppid', controller: 'Jobs', action: 'appid', idText: e.regid };
 						getAjaxData(params, 'callbackAppid');
 						
-						$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+						//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 						// Your GCM push server needs to know the regID before it can push to this device
 						// here is where you might want to send it the regID for later use.
-						console.log("regID = " + e.regid);
-					
-						
-							
+						//console.log("regID = " + e.regid);							
 					}
 
                     break;
