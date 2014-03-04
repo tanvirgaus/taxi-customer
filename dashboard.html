@@ -24,7 +24,10 @@
 	<!-- InstanceBeginEditable name="EditableHead" -->
     <script type="text/javascript">
 		$( document ).ready(function() {
-	
+			
+				currentUser = getLocalStorage("User");
+				userId = currentUser.id;
+			
 			$("#logout").click(function(){
 				logout();
 			});

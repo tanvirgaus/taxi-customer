@@ -22,6 +22,8 @@
 	});
  	</script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
+	<script src="PushNotification.js"></script>
+	<script src="js/app.reg.device.js"></script>
     <script type="text/javascript">
 
 		$(document).ready(function(){
@@ -61,7 +63,23 @@
 		function callbackJob(data) {
 			if(data.success == true) {			
 				alert('Job posted');
-				//location.replace('hire-taxi.html');
+				try 
+				{ 
+                	pushNotification = window.plugins.pushNotification;
+                	if (device.platform == 'android' || device.platform == 'Android') {
+                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
+						//alert();
+					} else {
+                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
+                	}
+                }
+				catch(err) 
+				{ 
+					txt="There was an error on this page.\n\n"; 
+					txt+="Error description: " + err.message + "\n\n"; 
+					alert(txt); 
+				} 
+				
 			} else {
 				console.log('noooooooo');
 				showMessage(data);
