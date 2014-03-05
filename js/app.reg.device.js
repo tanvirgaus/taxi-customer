@@ -1,9 +1,6 @@
-			//alert('Yess');
-			
 			var pushNotification;
             
 			function callbackAPPID(data) {
-				//alert('yesssssssssssssss');
 				window.location.href = "my-vehicles.html";
 							
 			}	
