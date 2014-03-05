@@ -38,7 +38,7 @@
 			if(data.success != false) {
 				setLocalStorage('price',data.data.Tarif);
 				setLocalStorage('option',data.data);
-				location.replace('review-offer.html');
+				//location.replace('review-offer.html');
 			} else {
 				console.log('noooooooo');
 				showMessage(data);
@@ -64,10 +64,29 @@
 				$.getJSON(source_data,function(result){
 				  	$.each(result.results, function(i, field){
 						$.each(field.address_components, function(i, obj_type){
-                            if(inArray('postal_code_prefix',obj_type.types)||
+						
+							
+						    if(inArray('postal_code_prefix',obj_type.types)||
                              	 inArray('postal_code',obj_type.types)){
-	                             	source_post_code =obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
-	                             	document.getElementById("from_post_code").value = new String(source_post_code);
+								 
+								 console.log(inArray('postal_code_prefix',obj_type.types));
+								 
+								 if( inArray('postal_code_prefix',obj_type.types) ){
+									var source_post_code = obj_type.short_name;
+									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
+								 
+								 
+									
+	                             	
+								 }
+								 else{
+									
+	                             	var source_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
+									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
+								 
+								 }
+								 document.getElementById("from_post_code").value = source_post_code;
+
                             }
 						});
 						
@@ -86,11 +105,24 @@
 				$.getJSON(destination_data,function(result){
 				  	$.each(result.results, function(i, field){
 						$.each(field.address_components, function(i, obj_type){
+						
                             if(inArray('postal_code_prefix',obj_type.types)||
                              	 inArray('postal_code',obj_type.types)){
-                            		destination_post_code =obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
-                            		document.getElementById("to_post_code").value = new String(destination_post_code);
-							
+								 
+								 if( inArray('postal_code_prefix',obj_type.types) ){
+								 
+								 	var destination_post_code = obj_type.short_name;
+									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
+									
+	                             	
+								 }
+								 else{
+
+	                             	var destination_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
+									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
+								 
+								 }
+								document.getElementById("to_post_code").value = destination_post_code;
                             }
 						});
 					});
