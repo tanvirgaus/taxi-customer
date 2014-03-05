@@ -36,9 +36,9 @@
 		
 		function callbackTarif(data) {
 			if(data.success != false) {
-				setLocalStorage('price',data.data.Tarif);
-				setLocalStorage('option',data.data);
-				//location.replace('review-offer.html');
+				setLocalStorage('price',data.data.Tarif.Tarif);
+				setLocalStorage('option',data.data.Options);
+				location.replace('review-offer.html');
 			} else {
 				console.log('noooooooo');
 				showMessage(data);
