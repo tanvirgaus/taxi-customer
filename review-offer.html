@@ -54,7 +54,9 @@
 			$('#job_taxi_type').val(option.taxi_type);
 			$('#job_baby_seat').val(option.baby_seat);
 			$('#job_wheel_chair').val(option.wheel_chair);
-			
+			$('#from_detail').val(option.from_detail);
+			$('#to_detail').val(option.to_detail);
+
 			$('#current_location_latitude').val(option.current_lat);
 			$('#current_location_longitude').val(option.current_lng);
 			
@@ -132,6 +134,8 @@
                     <input type="hidden" name='controller' value="Jobs"  />
 					<input type="hidden" name='action' value="jobPost"  />	
 					<input type="hidden" name='callback' value="callbackJob" />
+					<input type="hidden" id="from_detail" value="" name="data[job][from_detail]" />
+					<input type="hidden" id="to_detail" value="" name="data[job][to_detail]" /> 
 					<input type="hidden" id="job_poster_id" value="" name="data[job][user_id]" />
 					<input type="hidden" id="job_form_location" value="" name="data[job][location_from]" />
 					<input type="hidden" id="job_to_location" value="" name="data[job][location_to]" />
