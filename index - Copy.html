@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html><!-- InstanceBegin template="/Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
+<html>
     <head>
         <title>Mobile App</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -14,26 +14,21 @@
 		<!-- nativeDroid: Color Schemes -->
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
 		<!-- jQuery / jQueryMobile Scripts -->
-        <link href="css/style.css" type="text/css" rel="stylesheet">
- 		<!-- style link -->       
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-        
+
+		<link href="css/style.css" type="text/css" rel="stylesheet">
+		<!-- <link href="css/media-query.css" type="text/css" rel="stylesheet"> -->
 		<script src="js/logger.js"></script>
 		<script src="cordova.js"></script>
 		<script src="js/functions.js"></script>
 		<script type="text/javascript">
-        	$(document).ready(function() {
-         		allowAccess();
-             	$(document).on( 'pagecreate','#page', function(event){
-              		setUserToken();
-             	});
-        	});
-        </script>
-	<!-- InstanceBeginEditable name="EditableHead" -->
-    
-    		<script type="text/javascript">
-        	$(document).ready(function() {
+			$(document).ready(function() {
+				allowAccess();
+				$(document).on( 'pagecreate','#page', function(event){
+					setUserToken();
+				});
+				
 				var newWidth = $(window).width() - 15;
 				//alert(newWidth);
 				
@@ -50,9 +45,9 @@
 					$( ".input-container input[type=text], .input-container input[type=password]" ).css( { "height": "45px", "padding-left": "50px" } );
 					$( ".icon-ph" ).css( { "padding": "12.5px", "font-size": "20px" } );					
 				}
-        	});
-			</script>
-	<!-- InstanceEndEditable --> 
+			});
+		</script>
+
     </head>
     <body>
         
@@ -61,23 +56,18 @@
 			<div id="header-logo">
 				<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
 			</div>
-		<!-- InstanceBeginEditable name="EditableHeader" -->
-	<script type="text/javascript">
-    function callbackLogin(data) {
-        if(data.success == true && data.data != null) {
-            setLoginState(data);
-            location.replace('dashboard.html');
-        } else if (data.success == true && data.data == null ){
-			location.reload();
-			alert('No user found, give correct login info');
-		}
-    }
-    </script>
-		<!-- InstanceEndEditable -->
+			<script type="text/javascript">
+				function callbackLogin(data) {
+					if(data.success == true && data.data != null) {
+						setLoginState(data); location.replace('dashboard.html');
+					} else if (data.success == true && data.data == null ){
+						alert('No user found, give correct login info');
+					}
+				}
+			</script>
 		</header>
         
-        <div id="content"> 
-		<!-- InstanceBeginEditable name="EditableBody" -->
+        <div id="content">   
 			<div class="my-profile-bg content-position"> 
 				<h2>User Login</h2>        
 				<div id="result"></div>         
@@ -99,18 +89,15 @@
 				<a href="register.html" data-transition="slide" style="color:#FFF">Register</a>
 				<a href="get-quote.html" style="color:#FFF" rel="external">Get-Quote</a>      
 				<a href="push.html" style="color:#FFF" rel="external">Get-Push</a>              
-			</div>  
-                                
-		<!-- InstanceEndEditable -->
-		<div style="clear:both"></div>
-	</div>
-	<footer data-role="footer" data-position="fixed">
+			</div>        
+			<div style="clear:both"></div>
+		</div>
 		
-    <!-- InstanceBeginEditable name="EditableFooter" -->
-	
-	<!-- InstanceEndEditable -->
-	</footer>
-	</div>
-	</div>
-</body>
-<!-- InstanceEnd --></html>
+		<footer data-role="footer" data-position="fixed">
+
+		</footer>
+
+    </div>
+    
+    </body>
+</html>

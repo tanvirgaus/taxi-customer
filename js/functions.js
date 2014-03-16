@@ -4,7 +4,7 @@ var serviceURL		= "http://dev.smart-catalog.com.au/uk/taxi-app/services/";
  * Setting var value as per Dev enviornment
  */
 var	loc = window.location.toString();
-if(loc.search("taxi-customer") != -1){
+if(loc.search("taxi-customer") != -1 || loc.search("taxi") != -1){
 	serviceURL = "http://taxi-app.dev/services/"; // For configured dev sites
 } else if(loc.search("/localhost/") != -1) {
 	serviceURL = "http://localhost/projects/uk/taxi-app/services/"; // For localhost
