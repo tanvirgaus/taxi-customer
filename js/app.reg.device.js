@@ -1,7 +1,7 @@
 			var pushNotification;
             
 			function callbackAPPID(data) {
-				window.location.href = "my-vehicles.html";
+				//window.location.href = "my-vehicles.html";
 							
 			}	
             // handle GCM notifications for Android
