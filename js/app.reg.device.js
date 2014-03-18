@@ -27,7 +27,7 @@
 					}
 					
 					alert(e.payload.message+"Yes");
-					if(e.payload.message == 'job accepted') alert(e.payload.message+"Zahid");
+					//if(e.payload.message == 'job accepted') alert(e.payload.message+"Zahid");
 					
 					break;
                 }
