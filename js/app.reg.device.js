@@ -33,7 +33,7 @@
             
             function tokenHandler (result) { }
 			function successHandler (result) { 
-					//alert(e.payload.message);
+					alert(e.payload.message);
 			}
             function errorHandler (error) { }
             
