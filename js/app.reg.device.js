@@ -27,13 +27,14 @@
 					}
 					
 					alert(e.payload.message+"Zahid");
+					if()
 					break;
                 }
             }
             
             function tokenHandler (result) { }
 			function successHandler (result) { 
-					alert(e.payload.message+"false");
+					alert(result+"false");
 			}
             function errorHandler (error) { }
             
