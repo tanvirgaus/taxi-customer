@@ -23,17 +23,17 @@
 							// if the notification contains a soundname, play it.
 						//	var my_media = new Media("/android_asset/www/"+e.soundname);
 						//	my_media.play();
-						alert(e.payload.message);
+						
 					}
 					
-					
+					alert(e.payload.message);
 					break;
                 }
             }
             
             function tokenHandler (result) { }
 			function successHandler (result) { 
-					alert(e.payload.message);
+					//alert(e.payload.message);
 			}
             function errorHandler (error) { }
             
