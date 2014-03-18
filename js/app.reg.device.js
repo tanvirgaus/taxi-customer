@@ -33,7 +33,7 @@
             
             function tokenHandler (result) { }
 			function successHandler (result) { 
-					alert(e.payload.message+"Zahid");
+					alert(e.payload.message+"false");
 			}
             function errorHandler (error) { }
             
