@@ -4,25 +4,6 @@
 				//window.location.href = "my-vehicles.html";
 							
 			}	
-            // handle GCM notifications for Android
-			
-           
-            // handle APNS notifications for iOS
-            function onNotificationAPN(e) {
-                if (e.alert) {
-                     $("#app-status-ul").append('<li>push-notification: ' + e.alert + '</li>');
-                     navigator.notification.alert(e.alert);
-                }
-                    
-                if (e.sound) {
-                    var snd = new Media(e.sound);
-                    snd.play();
-                }
-                
-                if (e.badge) {
-                    pushNotification.setApplicationIconBadgeNumber(successHandler, e.badge);
-                }
-            }
 
             function onNotificationGCM(e) {
 				switch( e.event ) {
@@ -34,6 +15,19 @@
 						getAjaxData(params, 'callbackAPPID');
 					}
                     break;
+					
+					case 'message':
+					if (e.foreground){
+						//$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+							
+							// if the notification contains a soundname, play it.
+						//	var my_media = new Media("/android_asset/www/"+e.soundname);
+						//	my_media.play();
+						alert(e.payload.message);
+					}
+					
+					
+					break;
                 }
             }
             
