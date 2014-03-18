@@ -68,7 +68,7 @@
     function callbackLogin(data) {
         if(data.success == true && data.data != null) {
 		
-				setLoginState(data);
+				
 				try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
@@ -86,7 +86,7 @@
 					alert(txt); 
 				} 
 				
-            
+            setLoginState(data);
             location.replace('dashboard.html');
         } else if (data.success == true && data.data == null ){
 			location.reload();
