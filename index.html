@@ -62,30 +62,9 @@
 				<div class="tile-box"><a href="dashboard.html" rel="external"><img src="images/taxi-logo.png" alt="Get a Taxi App"></a></div>
 			</div>
 		<!-- InstanceBeginEditable name="EditableHeader" -->
-	<script src="PushNotification.js"></script>
-	<script src="js/app.reg.device.js"></script>
 	<script type="text/javascript">
     function callbackLogin(data) {
         if(data.success == true && data.data != null) {
-		
-				
-				try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-						//alert();
-					} else {
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				} 
-				
             setLoginState(data);
             location.replace('dashboard.html');
         } else if (data.success == true && data.data == null ){
