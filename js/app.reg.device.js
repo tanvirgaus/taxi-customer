@@ -26,8 +26,8 @@
 						
 					}
 					
-					alert(e.payload.message+"Zahid");
-					if()
+					
+					if(e.payload.message == 'job posted') alert(e.payload.message+"Zahid");
 					break;
                 }
             }
