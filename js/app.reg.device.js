@@ -27,7 +27,12 @@
 					}
 					
 					//alert(e.payload.message+"Yes");
-					if(e.payload.message == 'job accepted') alert(e.payload.message+"Zahid");
+					if(e.payload.message == 'job accepted') {
+						alert(e.payload.message+"Zahid");
+						
+						urlString = "rate-taxi.html";
+						window.open(urlString);
+					}
 					
 					break;
                 }
