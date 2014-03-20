@@ -96,9 +96,11 @@
 		function callbackJob(data) {
 			if(data.success == true) {			
 				//alert('Job posted');
-				
-				urlString = "<a href='#popupDialog' data-rel='popup' data-position-to='window' data-role='button' data-icon='external-link' data-transition='pop' data-inline='true'>Open popup dialog</a>";
-				window.open(urlString);
+				//$('#popupDialog data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="external-link"').trigger('click');
+				//$('#popupDialog').popup();
+				$( "#popupDialog" ).popup( "open" );
+				//urlString = "#popupDialog";
+				//window.open(urlString);
 				
 				/*<a href='#popupDialog' data-rel='popup' data-position-to='window' data-role='button' data-icon='external-link' data-transition='pop' data-inline='true'>Open popup dialog</a>*/
 				/*try 
@@ -143,8 +145,20 @@
         
         <div id="content"> 
 		<!-- InstanceBeginEditable name="EditableBody" -->
+			<!-- <a href="#popupDialog" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="external-link" style="display:none">Open popup dialog</a> -->
 			<div data-role='popup' data-theme='b' id='popupDialog'>
-			  <p>This is a popup description...</p>
+			  <p>Searching driver.....
+				<div class="spinner circles">
+					 <div></div>
+					 <div></div>
+					 <div></div>
+					 <div></div>
+					 <div></div>
+					 <div></div>
+					 <div></div>
+					 <div></div>
+				</div>
+			</p>
 			  <div class='showastabs center nobg'>
 			   <a href='#' data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true'>Okay</a>
 			   <a href='#' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
