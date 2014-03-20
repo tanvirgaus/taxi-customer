@@ -95,8 +95,13 @@
 		
 		function callbackJob(data) {
 			if(data.success == true) {			
-				alert('Job posted');
-			/*	try 
+				//alert('Job posted');
+				
+				urlString = "<a href='#popupDialog' data-rel='popup' data-position-to='window' data-role='button' data-icon='external-link' data-transition='pop' data-inline='true'>Open popup dialog</a>";
+				window.open(urlString);
+				
+				/*<a href='#popupDialog' data-rel='popup' data-position-to='window' data-role='button' data-icon='external-link' data-transition='pop' data-inline='true'>Open popup dialog</a>*/
+				/*try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
                 	if (device.platform == 'android' || device.platform == 'Android') {
@@ -138,7 +143,13 @@
         
         <div id="content"> 
 		<!-- InstanceBeginEditable name="EditableBody" -->
-	  
+			<div data-role='popup' data-theme='b' id='popupDialog'>
+			  <p>This is a popup description...</p>
+			  <div class='showastabs center nobg'>
+			   <a href='#' data-rel='back' data-icon='ok' data-iconpos='left' data-role='button' data-inline='true'>Okay</a>
+			   <a href='#' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
+			  </div>
+			</div>
 
 			 <div class="get-quote-bg content-position">
                     <div id="job_summary">
