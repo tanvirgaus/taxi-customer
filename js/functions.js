@@ -5,9 +5,9 @@ var serviceURL		= "http://dev.smart-catalog.com.au/uk/taxi-app/services/";
  */
 var	loc = window.location.toString();
 if(loc.search("taxi-customer") != -1 || loc.search("taxi") != -1){
-	serviceURL = "http://taxi-app.dev/services/"; // For configured dev sites
+	//serviceURL = "http://taxi-app.dev/services/"; // For configured dev sites
 } else if(loc.search("/localhost/") != -1) {
-	serviceURL = "http://localhost/projects/uk/taxi-app/services/"; // For localhost
+	//serviceURL = "http://localhost/projects/uk/taxi-app/services/"; // For localhost
 }
 
 var pageTitle		= '';
@@ -153,7 +153,7 @@ function getAjaxData(params, callback) {
 	controller 	= params['controller'];
 	action		= params['action'];
 	ajaxData =  $.param(params); /*params.serialize();*/ 
-	alert(ajaxData);
+	//alert(ajaxData);
 	$.ajax({
 		//beforeSend: function() { $.mobile.showPageLoadingMsg(); }, //Show spinner
 		//complete: function() { $.mobile.hidePageLoadingMsg() }, //Hide spinner

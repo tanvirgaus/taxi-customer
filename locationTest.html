@@ -21,19 +21,18 @@
         
 		<script src="js/logger.js"></script>
 		<script src="cordova.js"></script>
-		<script src="js/functions.js"></script>
-        <script src="PushNotification.js"></script>
-		<script src="js/app.reg.device.js"></script>
 		<script type="text/javascript">
         	$(document).ready(function() {
          		allowAccess();
              	$(document).on( 'pagecreate','#page', function(event){
               		setUserToken();
              	});
+				
+				//getPos();
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
-	<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="js/locationMapUpdate.js"></script>
 	<script src="js/functions.js"></script>
 	<!-- InstanceEndEditable --> 
@@ -53,7 +52,7 @@
         <div id="content"> 
 		<!-- InstanceBeginEditable name="EditableBody" -->
 	  
-			<div id="mapTest"> </div>
+			<div id="map-canvas"> </div>
 			
 		<!-- InstanceEndEditable -->
 		<div style="clear:both"></div>
