@@ -62,7 +62,7 @@ function onRefresh(position) {
    marker.setPosition(new google.maps.LatLng(lat, lon));//refresh marker
    map.setCenter(new google.maps.LatLng(lat, lon));//resfresh center of the map
    
-		params = { callback : 'callbackGetLocation', controller : 'DriversVehicles', action : 'getLocation', data : [{ vehicleId : 6 /*localStorage.getItem("driverid")*/ }] };
+		params = { callback : 'callbackGetLocation', controller : 'DriversVehicles', action : 'getLocation', data : [{ vehicleId : 5 /*localStorage.getItem("driverid")*/ }] };
 		getAjaxData(params, 'callbackGetLocation');
    
    map.fitBounds(bounds);
