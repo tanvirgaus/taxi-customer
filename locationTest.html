@@ -33,36 +33,9 @@
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
-    <script type="text/javascript">
-		$( document ).ready(function() {
-			
-				currentUser = getLocalStorage("User");
-				userId = currentUser.id;
-			
-			$("#logout").click(function(){
-				logout();
-			});
-			
-			try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-						//alert();
-					} else {
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				}
-		});
-    </script>
-	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-	<script src="js/jquery.geocomplete.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<script src="js/locationMapUpdate.js"></script>
+	<script src="js/functions.js"></script>
 	<!-- InstanceEndEditable --> 
     </head>
     <body>
@@ -80,36 +53,7 @@
         <div id="content"> 
 		<!-- InstanceBeginEditable name="EditableBody" -->
 	  
-			 <div class="tile mini get-quote-bg">
-             	
-				<a href="get-quote.html" rel="external">
-                <div class="tile-box">
-					<img src="images/taxi.png" alt="Get a Qoute">
-                </div>
-                </a>
-
-			 </div>
-			 <div class="tile mini my-profile-bg">
-			 	<a href="profile.html" data-transition="slide" rel="external"></a>
-				<div class="tile-box"><i class="fa fa-user fa-4x"></i>
-				<div>My Profile</div>
-                </div>
-			</div>
-			
-			<div class="tile mini help-bg">
-				<a href="locationTest.html" data-transition="flip"></a>
-				<div class="tile-box">
-				<i class="fa fa-question-circle fa-4x"></i>
-				<div>Location Test</div>
-				</div>
-			</div>
-			<div class="tile mini sign-out-bg">
-				<a href="logout.html" data-transition="flip" id="logout"></a>
-				<div class="tile-box">
-				<i class="fa fa-sign-out fa-4x"></i>
-				<div>Sign Out</div>
-				</div>
-			</div>  
+			<div id="mapTest"> </div>
 			
 		<!-- InstanceEndEditable -->
 		<div style="clear:both"></div>

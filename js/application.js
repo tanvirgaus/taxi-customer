@@ -1,75 +1,47 @@
-//create map
-var map,
-	currentPositionMarker,
-	mapCenter = new google.maps.LatLng(40.700683, -73.925972),
-	map;
-
-function initializeMap()
-{
-	map = new google.maps.Map(document.getElementById('map-canvas'), {
-	   zoom: 13,
-	   center: mapCenter,
-	   mapTypeId: google.maps.MapTypeId.ROADMAP
-	 });
-}
-
-function locError(error) {
-	// the current position could not be located
-	alert("The current position could not be found!");
-}
-
-function setCurrentPosition(pos) {
-	currentPositionMarker = new google.maps.Marker({
-		map: map,
-		position: new google.maps.LatLng(
-			pos.coords.latitude,
-			pos.coords.longitude
-		),
-		title: "Current Position"
-	});
-	map.panTo(new google.maps.LatLng(
-			pos.coords.latitude,
-			pos.coords.longitude
-		));
-}
-
-function displayAndWatch(position) {
-	// set current position
-	setCurrentPosition(position);
-	// watch position
-	watchCurrentPosition();
-}
-
-function watchCurrentPosition() {
-	var options = {timeout: 5000};
-	var positionTimer = navigator.geolocation.watchPosition(
-		function (position) {
-			setMarkerPosition(
-				currentPositionMarker,
-				position
-			);
-		}, function () {
-			alert('cannot update position');
-		}, options);
-}
-
-function setMarkerPosition(marker, position) {
-	marker.setPosition(
-		new google.maps.LatLng(
-			position.coords.latitude,
-			position.coords.longitude)
-	);
-}
-
-function initLocationProcedure() {
-	initializeMap();
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
-	} else {
-		alert("Your browser does not support the Geolocation API");
-	}
-}
-
-$(document).ready(function() {
-	initLocationProcedure();
+jQuery(function($) {
+    // Asynchronously Load the map API 
+    var script = document.createElement('script');
+    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
 });
+
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    map.setTilt(45);
+        
+    // Multiple Markers
+    var markers = [
+        ['London Eye, London', 51.503454,-0.119562],
+        ['Palace of Westminster, London', 51.499633,-0.124755]
+    ];
+                        
+   
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(14);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}
