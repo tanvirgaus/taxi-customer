@@ -95,14 +95,11 @@
 		
 		function callbackJob(data) {
 			if(data.success == true) {			
-				//alert('Job posted');
-				//$('#popupDialog data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="external-link"').trigger('click');
-				//$('#popupDialog').popup();
+				localStorage.setItem("jobId", data.data.jobId);
 				$( "#popupDialog" ).popup( "open" );
-				//urlString = "#popupDialog";
-				//window.open(urlString);
-				
-				/*<a href='#popupDialog' data-rel='popup' data-position-to='window' data-role='button' data-icon='external-link' data-transition='pop' data-inline='true'>Open popup dialog</a>*/
+				//alert(data.data.jobId);
+				//console.log(data.data.jobId);
+
 				/*try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;

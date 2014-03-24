@@ -30,6 +30,11 @@
              	$(document).on( 'pagecreate','#page', function(event){
               		setUserToken();
              	});
+				
+				currentUser = getLocalStorage("User");
+				
+				params = { callback : 'callbackGetProfile', controller : 'Profiles', action : 'getProfile', data : [{ userId : currentUser.id }] };
+				getAjaxData(params, 'callbackGetProfile');
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
@@ -52,6 +57,47 @@
 					$( ".icon-ph" ).css( { "padding": "12.5px", "font-size": "20px" } );					
 				}
         	});
+			
+			
+			
+			
+	function callbackGetProfile(data) {
+        if(data.success == true && data.data != null) {
+		
+			$('#fullNameUpdate').val(data.data.Profile.full_name);	
+			$('#fullAddressUpdate').val(data.data.Profile.address);
+			$('#cityNameUpdate').val(data.data.Profile.city);
+			$('#stateNameUpdate').val(data.data.Profile.state);
+			$('#zipCodeUpdate').val(data.data.Profile.zip);
+			$('#countryNameUpdate').val(data.data.Profile.country);
+			$('#phoneNoUpdate').val(data.data.Profile.phone);
+			
+			
+			$('#fullName').val(data.data.Profile.full_name);	
+			$('#fullAddress').val(data.data.Profile.address);
+			$('#cityName').val(data.data.Profile.city);
+			$('#stateName').val(data.data.Profile.state);
+			$('#zipCode').val(data.data.Profile.zip);
+			$('#countryName').val(data.data.Profile.country);
+			$('#phoneNo').val(data.data.Profile.phone);
+			
+
+			
+        } else if (data.success == true && data.data == null ){
+			//location.reload();
+			//alert('No user found, give correct login info');
+		}
+    }
+	
+		function callbackProfileUpdate(data) {
+        if(data.success == true && data.data != null) {
+			alert(data.message);
+	
+        } else if (data.success == true && data.data == null ){
+			//location.reload();
+			//alert('No user found, give correct login info');
+		}
+    }
 			</script>
 	<!-- InstanceEndEditable --> 
     </head>
@@ -74,38 +120,47 @@
 
 		<h2>User Profile</h2>
                             
-                            	<form>
+                            	<form method="post" action="" onsubmit="return submitForm(this)">
                                         <div class='input-container'>
                                                 <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
-                                               <input class="custom-text" type="text" placeholder="Full Name" data-role="none">
+                                               <input class="custom-text" type="text" placeholder="Full Name" data-role="none" id="fullName">
                                         </div>
                                         <div class='input-container'>
                                                 <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
-                                               <input class="custom-text" type="text" placeholder="Address" data-role="none">
+                                               <input class="custom-text" type="text" placeholder="Address" data-role="none" id="fullAddress">
                                         </div>
                                         <div class='input-container'>
                                                 <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
-                                               <input class="custom-text" type="text" placeholder="City" data-role="none">
+                                               <input class="custom-text" type="text" placeholder="City" data-role="none" id="cityName">
                                         </div>
                                         <div class='input-container'>
                                                 <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
-                                               <input class="custom-text" type="text" placeholder="State" data-role="none">
+                                               <input class="custom-text" type="text" placeholder="State" data-role="none" id="stateName">
                                         </div>
                                         <div class='input-container'>
                                                 <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
-                                               <input class="custom-text" type="text" placeholder="Zip" data-role="none">
+                                               <input class="custom-text" type="text" placeholder="Zip" data-role="none" id="zipCode">
                                         </div>
                                         <div class='input-container'>
                                                 <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
-                                               <input class="custom-text" type="text" placeholder="Country" data-role="none">
+                                               <input class="custom-text" type="text" placeholder="Country" data-role="none" id="countryName">
                                         </div>
                                         <div class='input-container'>
                                                 <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
-                                               <input class="custom-text" type="text" placeholder="Phone No" data-role="none">
+                                               <input class="custom-text" type="text" placeholder="Phone No" data-role="none" id="phoneNo">
                                         </div>                                        
-										<div class='input-container'><button type="submit" class="login" data-role="none">update profile</button></div>                                                                                                                        
-                                       
-                                       
+										                                                                                                                        
+                                        <input type="hidden" name='controller' value="Profiles"  />
+										<input type="hidden" name='action' value="profileUpdate"  />	
+										<input type="hidden" name='callback' value="callbackProfileUpdate" />
+										<input type="hidden" id="fullNameUpdate" value="" name="data[Profile][full_name]" />
+										<input type="hidden" id="fullAddressUpdate" value="" name="data[Profile][address]" /> 
+										<input type="hidden" id="cityNameUpdate" value="" name="data[Profile][city]" />
+										<input type="hidden" id="stateNameUpdate" value="" name="data[Profile][state]" />
+										<input type="hidden" id="zipCodeUpdate" value="" name="data[Profile][zip]" />
+										<input type="hidden" id="countryNameUpdate" value="" name="data[Profile][country]" />
+										<input type="hidden" id="phoneNoUpdate" value="" name="data[Profile][phone]" />                   
+										<div class='input-container'><button type="submit" class="login" data-role="none">update profile</button></div>
                                     
                                 </form>
               </div>                                

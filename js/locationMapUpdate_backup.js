@@ -14,16 +14,15 @@ var bounds = new google.maps.LatLngBounds();
 
 function getPos() {//initial function to read the position
     estado = "livre";
-    //navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy:true});
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy:true});
     setTimeout(keep_alive, 10000); //read every 10 seconds
  }
 
- function onSuccess() {//read map and mark it in the map
-	
+ function onSuccess(position) {//read map and mark it in the map
 	option = getLocalStorage('option');
 	
-    lat = option.current_lat;
-    lon = option.current_lng;
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
     console.log("Found - LAT: ", lat, "LON: ", lon);
 
     //var image = '/img/taxi_green.png';
@@ -35,38 +34,52 @@ function getPos() {//initial function to read the position
     };
 	
     map = new google.maps.Map(document.getElementById("map-canvas"), mapoptions);
-	//alert('Executed onsuccess after the line map');
+	
     marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat,lon),
         map: map
     });
-	//alert('Executed onsuccess after the line marker');
-	
-
-	map.panTo(new google.maps.LatLng( lat, lon));
-    //save_position();
-	//alert('Executed onsuccess last line');
 	bounds.extend(new google.maps.LatLng(lat,lon));
-	setTimeout(keep_alive, 10000);
+
+	map.panTo(new google.maps.LatLng(
+			position.coords.latitude,
+			position.coords.longitude
+	));
+    //save_position();
 }
 
 function keep_alive() {//read position and mark it in the map
-	params = { callback : 'callbackGetLocation', controller : 'DriversVehicles', action : 'getLocation', data : [{ jobId : localStorage.getItem("jobId") }] };
-	getAjaxData(params, 'callbackGetLocation');
-	
-    setTimeout(keep_alive, 10000); //read every 10 seconds   
+   navigator.geolocation.getCurrentPosition(onRefresh, onError, {enableHighAccuracy:true});
+   //save_position();
+   setTimeout(keep_alive, 10000); //read every 10 seconds   
 }
 
+//refresh only the marker
+function onRefresh(position) {
+   lat = position.coords.latitude;
+   lon = position.coords.longitude;
 
+   console.log("Found - LAT: ", lat, "LON: ", lon);
+
+   marker.setPosition(new google.maps.LatLng(lat, lon));//refresh marker
+   map.setCenter(new google.maps.LatLng(lat, lon));//resfresh center of the map
+   
+		params = { callback : 'callbackGetLocation', controller : 'DriversVehicles', action : 'getLocation', data : [{ vehicleId : 5 /*localStorage.getItem("driverid")*/ }] };
+		getAjaxData(params, 'callbackGetLocation');
+   
+   map.fitBounds(bounds);
+   
+   //23.7623751 LON:  90.3908276 
+}
 
 function trace_client(client_lat,client_lon) {//mark clients position in the map
+   //clientMarker.setPosition(new google.maps.LatLng(client_lat, client_lon));
    clientMarker = new google.maps.Marker({
         position: new google.maps.LatLng(client_lat,client_lon),
         map: map
     });
    console.log("client marked in the map");
    bounds.extend(new google.maps.LatLng(client_lat,client_lon));
-   map.fitBounds(bounds);
 }
 
 function onError(error) {
@@ -86,4 +99,4 @@ function callbackGetLocation(data){
 }
 
 
-google.maps.event.addDomListener(window, 'load', onSuccess);
+google.maps.event.addDomListener(window, 'load', getPos);
