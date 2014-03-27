@@ -26,11 +26,11 @@ html,body{
 	font-size: 100%;
 }
 #page {
-	min-width: 19.75em;
+	/*min-width: 19.75em;
 	max-width: 33em;
 	margin: .125em auto;
-	padding: 0em;
-	border: .125em solid #666666;
+	padding: 0em;*/
+	border: 1px solid #666666;
 }
 
 header {

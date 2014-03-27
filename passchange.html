@@ -30,39 +30,24 @@
              	$(document).on( 'pagecreate','#page', function(event){
               		setUserToken();
              	});
+				
+				currentUser = getLocalStorage("User");
+				$('#idUpdate').val(currentUser.id);
         	});
+			
+	function callbackchangePassword(data) {
+        if(data.success == true && data.data != null) {
+			//alert(data.message);
+			console.log(data.message);
+	
+        } else if (data.success == true && data.data == null ){
+			//location.reload();
+			//alert('No user found, give correct login info');
+		}
+    }
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
-    <script type="text/javascript">
-		$( document ).ready(function() {
-			
-				currentUser = getLocalStorage("User");
-				userId = currentUser.id;
-			
-			$("#logout").click(function(){
-				logout();
-			});
-			
-			try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-						//alert();
-					} else {
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				}
-		});
-    </script>
-	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-	<script src="js/jquery.geocomplete.js"></script>
+    <script src="js/jquery.geocomplete.js"></script>
 	<!-- InstanceEndEditable --> 
     </head>
     <body>
@@ -80,48 +65,35 @@
         <div id="content"> 
 		<!-- InstanceBeginEditable name="EditableBody" -->
 	  
-			 <div class="tile mini get-quote-bg">
-             	
-				<a href="get-quote.html" rel="external">
-                <div class="tile-box">
-					<img src="images/taxi.png" alt="Get a Qoute">
-                </div>
-                </a>
+      		<div class="get-quote-bg content-position">
+             
+             	<h2>Change Password</h2>
+               <form method="post" action="" onsubmit="return submitForm(this)">
+                                       
+					<div class='input-container'>
+                        <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
+                        <input class="custom-text" type="text" placeholder="Current Password" data-role="none" id="fullName" name="data[User][oldPassword]">
+                    </div>
+                    <div class='input-container'>
+                        <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
+                        <input class="custom-text" type="text" placeholder="New Password" data-role="none" id="fullAddress" name="data[User][changedPassword]">
+                    </div>
+                    <div class='input-container'>
+                         <div class="icon-ph"><i class="ui-icon-chevron-left"></i></div>
+                        <input class="custom-text" type="text" placeholder="Repeat Password" data-role="none" id="cityName" name="data[User][repeatPassword]">
+                    </div>
+                                      
+										                                                                                                                        
+                     <input type="hidden" name='controller' value="Users"  />
+					<input type="hidden" name='action' value="changePasswordApp"  />	
+					<input type="hidden" name='callback' value="callbackchangePassword" />
+					<input type="hidden" id="idUpdate" value="" name="data[User][id]" />
+					
+					<div class='input-container'><button type="submit" class="login" data-role="none">Change Password</button></div>
+                                    
+                                </form>
 
 			 </div>
-			 <div class="tile mini my-profile-bg">
-			 	<a href="profile.html" data-ajax="false"></a>
-				<div class="tile-box"><i class="fa fa-user fa-4x"></i>
-				<div>My Profile</div>
-                </div>
-			</div>
-			<div class="tile mini my-profile-bg">
-			 	<a href="passchange.html" data-ajax="false"></a>
-				<div class="tile-box"><i class="fa fa-user fa-4x"></i>
-				<div>Change Password</div>
-                </div>
-			</div>
-			<div class="tile mini my-profile-bg">
-			 	<a href="myjobs.html" data-ajax="false"></a>
-				<div class="tile-box"><i class="fa fa-user fa-4x"></i>
-				<div>My Jobs</div>
-                </div>
-			</div>
-			
-			<div class="tile mini help-bg">
-				<a href="locationTest.html" rel="external"></a>
-				<div class="tile-box">
-				<i class="fa fa-question-circle fa-4x"></i>
-				<div>Location Test</div>
-				</div>
-			</div>
-			<div class="tile mini sign-out-bg">
-				<a href="logout.html" data-transition="flip" id="logout"></a>
-				<div class="tile-box">
-				<i class="fa fa-sign-out fa-4x"></i>
-				<div>Sign Out</div>
-				</div>
-			</div>  
 			
 		<!-- InstanceEndEditable -->
 		<div style="clear:both"></div>

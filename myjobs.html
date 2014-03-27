@@ -30,39 +30,62 @@
              	$(document).on( 'pagecreate','#page', function(event){
               		setUserToken();
              	});
-        	});
-        </script>
-	<!-- InstanceBeginEditable name="EditableHead" -->
-    <script type="text/javascript">
-		$( document ).ready(function() {
-			
+				
 				currentUser = getLocalStorage("User");
-				userId = currentUser.id;
+				
+				params = { callback : 'callbackAllJobs', controller : 'Jobs', action : 'allJobs', data : [{ userId : currentUser.id }] };
+				getAjaxData(params, 'callbackAllJobs');
+        	});
 			
-			$("#logout").click(function(){
-				logout();
+	function callbackAllJobs(data) {
+        if(data.success == true && data.data != null) {
+		console.log(data.data);
+			var counting = 0 ;
+			$.each( data.data, function( key, value ) {
+				//console.log(key + ': ' + value);
+				$.each( data.data[key], function( keys, values ) {
+					//console.log(keys + ': ' + values);
+					//$('#dataShow').append("<li>"+values.options+"</li>");
+					            
+				$('#dataShow').append("<li><a href='#'><h2>From "+values.from_address+" TO "+values.to_address+"</h2><p>"+values.id+"</p><p class='ui-li-aside'><strong>6:24</strong>PM</p></a></li>");
+				
+				});
 			});
 			
-			try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-						//alert();
-					} else {
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				}
-		});
-    </script>
-	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-	<script src="js/jquery.geocomplete.js"></script>
+			//console.log(JSON.parse(data.data)); 
+			
+			/*$.each(data.data, function(key, value) {
+				$.each(data.data[key], function(keys, values){
+					console.log(keys + ': ' + values);
+				})
+			});*/
+			
+			
+			//$(data.data).each(function() {
+				//var output = "<li>" + this.Job + "</li>";
+				//console.log(this.Job);
+				//$('#allJobsData').append(output);
+			//});
+	
+        } else if (data.success == true && data.data == null ){
+			//location.reload();
+			//alert('No user found, give correct login info');
+		}
+    }
+	
+	/*Object.size = function(obj) {
+			var size = 0, key;
+			for (key in obj) {
+				if (obj.hasOwnProperty(key)) size++;
+			}
+			return size;
+	/};*/
+
+		// Get the size of an object
+		
+        </script>
+	<!-- InstanceBeginEditable name="EditableHead" -->
+    <script src="js/jquery.geocomplete.js"></script>
 	<!-- InstanceEndEditable --> 
     </head>
     <body>
@@ -80,48 +103,22 @@
         <div id="content"> 
 		<!-- InstanceBeginEditable name="EditableBody" -->
 	  
-			 <div class="tile mini get-quote-bg">
-             	
-				<a href="get-quote.html" rel="external">
-                <div class="tile-box">
-					<img src="images/taxi.png" alt="Get a Qoute">
-                </div>
-                </a>
+      		<div class="get-quote-bg content-position">
+              	<h2>My Jobs</h2>
+				<div id="allJobsData">
+		<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="dataShow">
+            <!-- <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li> -->
+            <li>
+				<a href="index.php">
+					<img src="http://www.placehold.it/150x150">
+					<h2>Stephen Weber</h2>
+					<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+					<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+				</a>
+			</li>
 
-			 </div>
-			 <div class="tile mini my-profile-bg">
-			 	<a href="profile.html" data-ajax="false"></a>
-				<div class="tile-box"><i class="fa fa-user fa-4x"></i>
-				<div>My Profile</div>
-                </div>
-			</div>
-			<div class="tile mini my-profile-bg">
-			 	<a href="passchange.html" data-ajax="false"></a>
-				<div class="tile-box"><i class="fa fa-user fa-4x"></i>
-				<div>Change Password</div>
-                </div>
-			</div>
-			<div class="tile mini my-profile-bg">
-			 	<a href="myjobs.html" data-ajax="false"></a>
-				<div class="tile-box"><i class="fa fa-user fa-4x"></i>
-				<div>My Jobs</div>
-                </div>
-			</div>
-			
-			<div class="tile mini help-bg">
-				<a href="locationTest.html" rel="external"></a>
-				<div class="tile-box">
-				<i class="fa fa-question-circle fa-4x"></i>
-				<div>Location Test</div>
 				</div>
-			</div>
-			<div class="tile mini sign-out-bg">
-				<a href="logout.html" data-transition="flip" id="logout"></a>
-				<div class="tile-box">
-				<i class="fa fa-sign-out fa-4x"></i>
-				<div>Sign Out</div>
-				</div>
-			</div>  
+            </div>
 			
 		<!-- InstanceEndEditable -->
 		<div style="clear:both"></div>
