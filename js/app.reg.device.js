@@ -33,11 +33,11 @@
 						$('#popupDialog').popup('close');
 						urlString = "rate-taxi.html";
 						window.open(urlString);
-					}else if(e.payload.message == 'Taxi Arrived') {
+					} //else if(e.payload.message == 'Taxi Arrived') {
 						
-						alert('Taxi Arrived');
+						//alert('Taxi Arrived');
 						
-					}
+					//}
 					
 					break;
                 }
