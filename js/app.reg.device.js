@@ -27,12 +27,17 @@
 					}
 					
 					//alert(e.payload.message+"Yes");
-					if(e.payload.message == 'job accepted') {
+					if(e.payload.message == 'Job Accepted') {
 						//alert(e.payload.message+"Zahid");
 						
 						$('#popupDialog').popup('close');
 						urlString = "rate-taxi.html";
 						window.open(urlString);
+					}
+					if(e.payload.message == 'Taxi Arrived') {
+						
+						alert('Taxi Arrived');
+						
 					}
 					
 					break;
