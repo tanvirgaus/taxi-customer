@@ -22,7 +22,7 @@
 						//navigator.app.backHistory();
 					//}
 				//}, false);
-				if( getLocalStorage("readyCount") == 0 ) {
+				if( window.readyCount == 0 ) {
 					try { 
 					alert('try executed');
 						pushNotification = window.plugins.pushNotification;
@@ -40,7 +40,8 @@
 						txt+="Error description: " + err.message + "\n\n"; 
 						alert(txt); 
 					} 
-					setLocalStorage("readyCount", 1 );
+					//setLocalStorage("readyCount", 1 );
+					window.readyCount ++ ;
 				}
             }
             
