@@ -123,7 +123,7 @@ function clearSessionStorage() {
 function submitForm(formObj) {
 
 	//console.log($(formObj).serialize());
-	
+	//if()
 	callback	= $('input[name="callback"]', formObj).val();
 	controller 	= $('input[name="controller"]', formObj).val();
 	action		= $('input[name="action"]', formObj).val();

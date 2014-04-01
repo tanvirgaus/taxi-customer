@@ -37,36 +37,13 @@
     <script type="text/javascript">
 		
 		$( document ).ready(function() {
-			
-				currentUser = getLocalStorage("User");
-				userId = currentUser.id;
-				//var isSetPush = 0;
-				alert(getLocalStorage("readyCount"));
-				
+			currentUser = getLocalStorage("User");
+			userId = currentUser.id;
+	
 			
 			$("#logout").click(function(){
 				logout();
 			});
-			
-			/*if(getLocalStorage("isSetPush") == "No") {
-				try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-						//alert();
-					} else {
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-					
-                } 
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				}
-			}*/
 		});
     </script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>

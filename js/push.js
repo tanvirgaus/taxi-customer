@@ -24,7 +24,7 @@
 				//}, false);
 				
 					try { 
-					alert('try executed');
+					
 						pushNotification = window.plugins.pushNotification;
 						if (device.platform == 'android' || device.platform == 'Android') {
 							//$("#app-status-ul").append('<li>registering android</li>');
