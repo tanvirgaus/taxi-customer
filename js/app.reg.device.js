@@ -13,7 +13,8 @@
 						//userId = currentUser.id;
 						//params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
 						//getAjaxData(params, 'callbackAPPID');
-						//setLocalStorage("deviceRegId",e.regid);
+						setLocalStorage("deviceRegId",e.regid);
+						setLocalStorage("isSetPush","Yes");
 					}
                     break;
 					

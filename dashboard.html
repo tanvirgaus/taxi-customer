@@ -38,30 +38,15 @@
 			
 				currentUser = getLocalStorage("User");
 				userId = currentUser.id;
+				//var isSetPush = 0;
+				
 			
 			$("#logout").click(function(){
 				logout();
 			});
-			document.addEventListener("backbutton", function(e)
-				{
-                	$("#app-status-ul").append('<li>backbutton event received</li>');
-  					
-      				if( $("#home").length > 0)
-					{
-						// call this to get a new token each time. don't call it to reuse existing token.
-						//pushNotification.unregister(successHandler, errorHandler);
-						e.preventDefault();
-						navigator.app.exitApp();
-						//alert(navigator);
-					}
-					else
-					{
-						navigator.app.backHistory();
-					}
-			}, false);
 			
-			
-			try 
+			if(getLocalStorage("User") == "No") {
+				try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
                 	if (device.platform == 'android' || device.platform == 'Android') {
@@ -70,6 +55,7 @@
 					} else {
                     	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
                 	}
+					
                 } 
 				catch(err) 
 				{ 
@@ -77,6 +63,7 @@
 					txt+="Error description: " + err.message + "\n\n"; 
 					alert(txt); 
 				}
+			}
 		});
     </script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
