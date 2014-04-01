@@ -1,13 +1,13 @@
  var pushNotification;
             
             function onDeviceReady() {
-                $("#app-status-ul").append('<li>deviceready event received</li>');
+                //$("#app-status-ul").append('<li>deviceready event received</li>');
                 
 				document.addEventListener("backbutton", function(e)
 				{
-                	$("#app-status-ul").append('<li>backbutton event received</li>');
+                	//$("#app-status-ul").append('<li>backbutton event received</li>');
   					
-      				if( $("#home").length > 0)
+      				/*if( $("#home").length > 0)
 					{
 						// call this to get a new token each time. don't call it to reuse existing token.
 						//pushNotification.unregister(successHandler, errorHandler);
@@ -16,19 +16,19 @@
 						//alert(navigator);
 					}
 					else
-					{
+					{*/
 						navigator.app.backHistory();
-					}
+					//}
 				}, false);
 			
 				try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
                 	if (device.platform == 'android' || device.platform == 'Android') {
-						$("#app-status-ul").append('<li>registering android</li>');
+						//$("#app-status-ul").append('<li>registering android</li>');
                     	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
 					} else {
-						$("#app-status-ul").append('<li>registering iOS</li>');
+						//$("#app-status-ul").append('<li>registering iOS</li>');
                     	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
                 	}
                 }
@@ -59,16 +59,16 @@
             
             // handle GCM notifications for Android
             function onNotificationGCM(e) {
-                $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
+                //$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
                 
                 switch( e.event )
                 {
                     case 'registered':
 					if ( e.regid.length > 0 ){
-						$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+						//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 						// Your GCM push server needs to know the regID before it can push to this device
 						// here is where you might want to send it the regID for later use.
-						console.log("regID = " + e.regid);
+						//console.log("regID = " + e.regid);
 						
 					}
                     break;
@@ -80,8 +80,8 @@
 							$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 							
 							// if the notification contains a soundname, play it.
-							var my_media = new Media("/android_asset/www/"+e.soundname);
-							my_media.play();
+							//var my_media = new Media("/android_asset/www/"+e.soundname);
+							//my_media.play();
 						}
 						else
 						{	// otherwise we were launched because the user touched a notification in the notification tray.
@@ -91,8 +91,9 @@
 							$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
 						}
 							
-						$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-						$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
+						//$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+						alert('Working app id');
                     break;
                     
                     case 'error':
@@ -119,4 +120,4 @@
                 $("#app-status-ul").append('<li>error:'+ error +'</li>');
             }
             
-			document.addEventListener('deviceready', onDeviceReady, true);
+			//document.addEventListener('deviceready', onDeviceReady, true);

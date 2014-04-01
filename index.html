@@ -23,14 +23,13 @@
 		<script src="cordova.js"></script>
 		<script src="js/functions.js"></script>
         <script src="PushNotification.js"></script>
-		<script src="js/app.reg.device.js"></script>
+		<script src="js/push.js"></script>
 		<script type="text/javascript">
         	$(document).ready(function() {
          		allowAccess();
              	$(document).on( 'pagecreate','#page', function(event){
               		setUserToken();
              	});
-				setLocalStorage("isSetPush","No");
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->

@@ -23,7 +23,7 @@
 		<script src="cordova.js"></script>
 		<script src="js/functions.js"></script>
         <script src="PushNotification.js"></script>
-		<script src="js/app.reg.device.js"></script>
+		<script src="js/push.js"></script>
 		<script type="text/javascript">
         	$(document).ready(function() {
          		allowAccess();
@@ -34,6 +34,7 @@
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
     <script type="text/javascript">
+		document.addEventListener('deviceready', onDeviceReady, true);
 		$( document ).ready(function() {
 			
 				currentUser = getLocalStorage("User");
@@ -45,7 +46,7 @@
 				logout();
 			});
 			
-			if(getLocalStorage("isSetPush") == "No") {
+			/*if(getLocalStorage("isSetPush") == "No") {
 				try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
@@ -63,7 +64,7 @@
 					txt+="Error description: " + err.message + "\n\n"; 
 					alert(txt); 
 				}
-			}
+			}*/
 		});
     </script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
