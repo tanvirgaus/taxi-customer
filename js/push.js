@@ -17,6 +17,7 @@
 					}
 					else
 					{*/
+						history.go(-1);
 						navigator.app.backHistory();
 					//}
 				}, false);
