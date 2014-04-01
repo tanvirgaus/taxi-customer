@@ -66,13 +66,14 @@
                 
                 switch( e.event )
                 {
+				alert(e.event);
                     case 'registered':
 					if ( e.regid.length > 0 ){
 						//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 						// Your GCM push server needs to know the regID before it can push to this device
 						// here is where you might want to send it the regID for later use.
 						//console.log("regID = " + e.regid);
-						
+						alert(e.regid);
 					}
                     break;
                     
@@ -96,7 +97,7 @@
 							
 						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
 						//$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-						alert('Working app id');
+						
                     break;
                     
                     case 'error':
