@@ -13,7 +13,7 @@
 						//userId = currentUser.id;
 						//params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
 						//getAjaxData(params, 'callbackAPPID');
-						getLocalStorage("deviceRegId","e.regid");
+						getLocalStorage("deviceRegId",e.regid);
 					}
                     break;
 					
