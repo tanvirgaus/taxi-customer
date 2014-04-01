@@ -26,30 +26,10 @@
 		<script src="js/app.reg.device.js"></script>
 		<script type="text/javascript">
         	$(document).ready(function() {
-			try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-						//alert();
-					} else {
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                } 
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				}
-			
-			
          		allowAccess();
              	$(document).on( 'pagecreate','#page', function(event){
               		setUserToken();
              	});
-				
-
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
