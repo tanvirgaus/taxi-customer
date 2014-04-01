@@ -25,13 +25,15 @@
         <script src="PushNotification.js"></script>
 		<script src="js/push.js"></script>
 		<script type="text/javascript">
+		setLocalStorage("readyCount", 0 );
+			//var readyCount = 0;
         	$(document).ready(function() {
          		allowAccess();
              	$(document).on( 'pagecreate','#page', function(event){
               		setUserToken();
              	});
-				var readyCount = 0;
-				setLocalStorage("readyCount", 0 );
+				
+				//setLocalStorage("readyCount", 0 );
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
