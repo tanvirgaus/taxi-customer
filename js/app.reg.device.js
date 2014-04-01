@@ -9,10 +9,11 @@
 				switch( e.event ) {
                     case 'registered':
 					if ( e.regid.length > 0 ) {
-						currentUser = getLocalStorage("User");
+						//currentUser = getLocalStorage("User");
 						//userId = currentUser.id;
-						params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
-						getAjaxData(params, 'callbackAPPID');
+						//params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
+						//getAjaxData(params, 'callbackAPPID');
+						getLocalStorage("deviceRegId","e.regid");
 					}
                     break;
 					

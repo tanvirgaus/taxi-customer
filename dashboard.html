@@ -43,7 +43,8 @@
 				logout();
 			});
 			
-			try 
+			alert(getLocalStorage("deviceRegId"));
+			/*try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
                 	if (device.platform == 'android' || device.platform == 'Android') {
@@ -58,7 +59,7 @@
 					txt="There was an error on this page.\n\n"; 
 					txt+="Error description: " + err.message + "\n\n"; 
 					alert(txt); 
-				}
+				}*/
 		});
     </script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
