@@ -1,10 +1,10 @@
  var pushNotification;
             
             function onDeviceReady() {
-				alert("deviceready event received");
+				//alert("deviceready event received");
                 //$("#app-status-ul").append('<li>deviceready event received</li>');
                 
-				document.addEventListener("backbutton", function(e)
+				/*document.addEventListener("backbutton", function(e)
 				{
                 	//$("#app-status-ul").append('<li>backbutton event received</li>');
   					
@@ -18,13 +18,14 @@
 					}
 					else
 					{*/
-						history.go(-1);
-						navigator.app.backHistory();
+						//history.go(-1);
+						//navigator.app.backHistory();
 					//}
-				}, false);
+				//}, false);
 			
 				try 
 				{ 
+				alert('try executed');
                 	pushNotification = window.plugins.pushNotification;
                 	if (device.platform == 'android' || device.platform == 'Android') {
 						//$("#app-status-ul").append('<li>registering android</li>');
