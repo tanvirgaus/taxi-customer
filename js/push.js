@@ -80,7 +80,7 @@
                     case 'message':
                     	// if this flag is set, this notification happened while we were in the foreground.
                     	// you might want to play a sound to get the user's attention, throw up a dialog, etc.
-                    	if (e.foreground){
+                    	/*if (e.foreground){
 							$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 							
 							// if the notification contains a soundname, play it.
@@ -93,18 +93,18 @@
 								//$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
 							else
 							//$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-						}
+						}*/
 							
 						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
 						//$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
 						
-					if(e.payload.message == 'Job Accepted') {
-						//alert(e.payload.message+"Zahid");
-						
-						$('#popupDialog').popup('close');
-						urlString = "rate-taxi.html";
-						window.open(urlString);
-					}
+						if(e.payload.message == 'Job Accepted') {
+							//alert(e.payload.message+"Zahid");
+							
+							$('#popupDialog').popup('close');
+							urlString = "rate-taxi.html";
+							window.open(urlString);
+						}
 						
                     break;
                     
@@ -131,5 +131,11 @@
             function errorHandler (error) {
                 $("#app-status-ul").append('<li>error:'+ error +'</li>');
             }
+			
+			function callbackAPPID(data) {
+				if(data.success == true) {			
+				} else {
+				}
+			}
             
 			//document.addEventListener('deviceready', onDeviceReady, true);
