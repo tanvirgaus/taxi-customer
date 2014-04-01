@@ -26,12 +26,7 @@
 		<script src="js/app.reg.device.js"></script>
 		<script type="text/javascript">
         	$(document).ready(function() {
-         		allowAccess();
-             	$(document).on( 'pagecreate','#page', function(event){
-              		setUserToken();
-             	});
-				
-				try 
+			try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
                 	if (device.platform == 'android' || device.platform == 'Android') {
@@ -47,6 +42,14 @@
 					txt+="Error description: " + err.message + "\n\n"; 
 					alert(txt); 
 				}
+			
+			
+         		allowAccess();
+             	$(document).on( 'pagecreate','#page', function(event){
+              		setUserToken();
+             	});
+				
+
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
