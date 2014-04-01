@@ -22,25 +22,26 @@
 						//navigator.app.backHistory();
 					//}
 				//}, false);
-			
-				try 
-				{ 
-				alert('try executed');
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-						//$("#app-status-ul").append('<li>registering android</li>');
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-					} else {
-						//$("#app-status-ul").append('<li>registering iOS</li>');
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				} 
+				if( getLocalStorage("readyCount") == 0 ) {
+					try { 
+					alert('try executed');
+						pushNotification = window.plugins.pushNotification;
+						if (device.platform == 'android' || device.platform == 'Android') {
+							//$("#app-status-ul").append('<li>registering android</li>');
+							pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
+						} else {
+							//$("#app-status-ul").append('<li>registering iOS</li>');
+							pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
+						}
+					}
+					catch(err) 
+					{ 
+						txt="There was an error on this page.\n\n"; 
+						txt+="Error description: " + err.message + "\n\n"; 
+						alert(txt); 
+					} 
+					setLocalStorage("readyCount", 1 );
+				}
             }
             
             // handle APNS notifications for iOS
@@ -69,11 +70,10 @@
 				//alert(e.event);
                     case 'registered':
 					if ( e.regid.length > 0 ){
-						//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
-						// Your GCM push server needs to know the regID before it can push to this device
-						// here is where you might want to send it the regID for later use.
-						//console.log("regID = " + e.regid);
-						alert(e.regid);
+						currentUser = getLocalStorage("User");
+						userId = currentUser.id;
+						params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
+						getAjaxData(params, 'callbackAPPID');
 					}
                     break;
                     
@@ -90,13 +90,21 @@
 						else
 						{	// otherwise we were launched because the user touched a notification in the notification tray.
 							if (e.coldstart)
-								$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+								//$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
 							else
-							$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+							//$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
 						}
 							
 						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
 						//$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+						
+					if(e.payload.message == 'Job Accepted') {
+						//alert(e.payload.message+"Zahid");
+						
+						$('#popupDialog').popup('close');
+						urlString = "rate-taxi.html";
+						window.open(urlString);
+					}
 						
                     break;
                     
