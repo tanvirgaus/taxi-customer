@@ -9,11 +9,11 @@
 				switch( e.event ) {
                     case 'registered':
 					if ( e.regid.length > 0 ) {
-						//currentUser = getLocalStorage("User");
-						//userId = currentUser.id;
-						//params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
-						//getAjaxData(params, 'callbackAPPID');
-						setLocalStorage("deviceRegId",e.regid);
+						currentUser = getLocalStorage("User");
+						userId = currentUser.id;
+						params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
+						getAjaxData(params, 'callbackAPPID');
+						//setLocalStorage("deviceRegId",e.regid);
 						setLocalStorage("isSetPush","Yes");
 					}
                     break;

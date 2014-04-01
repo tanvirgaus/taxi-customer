@@ -96,29 +96,10 @@
 		function callbackJob(data) {
 			if(data.success == true) {			
 				localStorage.setItem("jobId", data.data.jobId);
-				$( "#popupDialog" ).popup( "open" );
+				alert("Job id = "+data.data.jobId);
+				$("#popupDialog").popup("open");
 				//alert(data.data.jobId);
-				//console.log(data.data.jobId);
-
-				/*try 
-				{ 
-                	pushNotification = window.plugins.pushNotification;
-                	if (device.platform == 'android' || device.platform == 'Android') {
-                    	pushNotification.register(successHandler, errorHandler, {"senderID":"325770691942","ecb":"onNotificationGCM"});		// required!
-						//alert();
-					} else {
-                    	pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
-                	}
-                }
-				catch(err) 
-				{ 
-					txt="There was an error on this page.\n\n"; 
-					txt+="Error description: " + err.message + "\n\n"; 
-					alert(txt); 
-				} 
-				
-			*/
-				
+				//console.log(data.data.jobId);				
 				
 			} else {
 				console.log('noooooooo');
