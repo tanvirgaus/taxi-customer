@@ -73,6 +73,7 @@
 					if ( e.regid.length > 0 ){
 						currentUser = getLocalStorage("User");
 						userId = currentUser.id;
+						alert(getLocalStorage("readyCount"));
 						params = { callback : 'callbackAPPID', controller : 'Users', action : 'appid', data : [{ deviceRegId : e.regid, userId : currentUser.id }] }; 
 						getAjaxData(params, 'callbackAPPID');
 					}
