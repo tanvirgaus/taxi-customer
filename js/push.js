@@ -22,7 +22,7 @@
 						//navigator.app.backHistory();
 					//}
 				//}, false);
-				if( window.readyCount == 0 ) {
+				
 					try { 
 					alert('try executed');
 						pushNotification = window.plugins.pushNotification;
@@ -41,8 +41,8 @@
 						alert(txt); 
 					} 
 					//setLocalStorage("readyCount", 1 );
-					window.readyCount ++ ;
-				}
+					//window.readyCount ++ ;
+				
             }
             
             // handle APNS notifications for iOS
