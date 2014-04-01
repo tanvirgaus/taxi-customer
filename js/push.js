@@ -1,6 +1,7 @@
  var pushNotification;
             
             function onDeviceReady() {
+				alert("deviceready event received");
                 //$("#app-status-ul").append('<li>deviceready event received</li>');
                 
 				document.addEventListener("backbutton", function(e)
