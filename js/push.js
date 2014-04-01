@@ -66,7 +66,7 @@
                 
                 switch( e.event )
                 {
-				alert(e.event);
+				//alert(e.event);
                     case 'registered':
 					if ( e.regid.length > 0 ){
 						//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
