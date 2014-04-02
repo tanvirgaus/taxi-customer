@@ -25,12 +25,12 @@
         <script src="PushNotification.js"></script>
 		<script src="js/push.js"></script>
 		<script type="text/javascript">
-        	$(document).ready(function() {
-         		allowAccess();
-             	$(document).on( 'pagecreate','#page', function(event){
-              		setUserToken();
-             	});
-        	});
+        	//$(document).ready(function() {
+         		//allowAccess();
+             	//$(document).on( 'pagecreate','#page', function(event){
+              		//setUserToken();
+             	//});
+        	//});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
             		<script type="text/javascript">
@@ -59,14 +59,14 @@
 
 		$(document).ready(function(){
 		
-			currentUser = getLocalStorage("User");
-			driver = currentUser.id;
+			//currentUser = getLocalStorage("User");
+			//driver = currentUser.id;
 
 			option = getLocalStorage('option');
 			price = getLocalStorage('price');
 			//alert(dump(price));
-			$('#from_address_out').text(price.location_from);
-			$('#to_address_out').text(price.location_to);
+			$('#from_address_out').text(option.from_detail);
+			$('#to_address_out').text(option.to_detail);
 			$('#rate_amount_out').text(price.peak_rate);
 
 			
@@ -75,7 +75,7 @@
 			$('#baby_seat_out').text(option.baby_seat);
 			$('#wheel_chair_out').text(option.wheel_chair);
 			
-			$('#job_poster_id').val(driver);						
+			//$('#job_poster_id').val(driver);						
 			$('#job_form_location').val(price.location_from);
 			$('#job_to_location').val(price.location_to);
 			$('#job_calculated_fare').val(price.peak_rate);
@@ -92,6 +92,21 @@
 			$('#current_location_longitude').val(option.current_lng);
 			
 		});
+		
+		function checkNsubmit(form){
+			var loggedIn = getLocalStorage("loggedin");
+			if(loggedIn == 'yes'){
+				
+				currentUser = getLocalStorage("User");
+				driver = currentUser.id;
+				$('#job_poster_id').val(driver);	
+				submitForm(form);
+				
+			}else if ((loggedIn === undefined) || (loggedIn == null) || (loggedIn == "undefined")){
+				$("#loginState").popup("open");
+			}
+			return false;
+		}
 		
 		function callbackJob(data) {
 			if(data.success == true) {			
@@ -142,6 +157,21 @@
 			   <a href='#' data-rel='back' data-icon='delete' data-iconpos='left' data-role='button' data-inline='true'>Cancel</a>
 			  </div>
 			</div>
+			<div data-role="popup" id="loginState" data-theme="b">
+            
+                <div data-role="header" data-theme="b">
+                    <h1>Do you have any account?</h1>
+                </div>
+        
+                <div data-role="content" data-theme="b">
+                    <p>If you are a recurring customer please login or create an new account.</p>
+                    <div class='showastabs center nobg'>
+                            <a href="login.html" data-ajax="false" data-icon="ok" data-iconpos="left" data-role="button" data-inline="true">Login</a>
+                            <a href="register.html" data-ajax="false" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true">Register</a>
+                    </div>
+                    
+                </div>
+            </div>
 
 			 <div class="get-quote-bg content-position">
                     <div id="job_summary">
@@ -157,15 +187,15 @@
                         </ul> 
                     </div> 
                             
-				<form  action="#" method="POST" enctype="multipart/form-data" onSubmit="return submitForm(this)">
+				<form  action="#" method="POST" enctype="multipart/form-data" onSubmit="return checkNsubmit(this)" data-ajax="false">
                          <div class='input-container'>
-                            <div class="icon-ph"><i class="fa fa-money fa-fw"></i></div>
+                            <div class="icon-ph"><i class="ui-icon-heart"></i></div>
                             <input class="custom-text" type="text" placeholder="Offer another rate" data-role="none" name="data[job][customer_offer]">
                             </div>
                  <div class='input-container'>                     
-                 <div class="icon-rh"><i class="fa fa-chevron-left fa-fw"></i></div>
+                 <!-- <div class="icon-rh"><i class="fa fa-chevron-left fa-fw"></i></div> -->
 
-                 <a href="get.html" data-rel="back"><button type="submit" data-role="none" class="get-quote-back"></button></a>
+                 <!-- <a href="get.html" data-rel="back"><button type="submit" data-role="none" class="get-quote-back"></button></a> -->
 			     <a href="hire-taxi.html" data-transition="slidefade"></a>
                  <input type="submit" data-role="none" class="get-quote-continue">
                     <input type="hidden" name='controller' value="Jobs"  />

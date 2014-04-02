@@ -26,10 +26,10 @@
 		<script src="js/push.js"></script>
 		<script type="text/javascript">
         	$(document).ready(function() {
-         		allowAccess();
-             	$(document).on( 'pagecreate','#page', function(event){
-              		setUserToken();
-             	});
+         		//allowAccess();
+             	//$(document).on( 'pagecreate','#page', function(event){
+              		//setUserToken();
+             	//});
         	});
         </script>
 	<!-- InstanceBeginEditable name="EditableHead" -->
@@ -68,20 +68,20 @@
        		
        		<form id="register" method="get" action="" onsubmit="return submitForm(this)">
             	<div class="input-container">
-                    <div class="icon-ph"><i class="fa fa-bars fa-fw"></i></div>
+                    <div class="icon-ph"><i class="icon-ellipsis-vertical"></i></div>
                     <input class="custom-text" type="text" placeholder="Full Name" data-role="none" name="data[Profile][full_name]">
                 </div>
                 <div class='input-container'>
-                    <div class="icon-ph"><i class="fa fa-envelope-o fa-fw"></i></div>
+                    <div class="icon-ph"><i class="icon-ellipsis-vertical"></i></div>
                 	<input class="custom-text" type="text" placeholder="Email address" data-role="none" name="data[User][username]">
                 </div>
                 <div class='input-container'>
-                    <div class="icon-ph"><i class="fa fa-phone fa-fw"></i></div>
+                    <div class="icon-ph"><i class="icon-ellipsis-vertical"></i></div>
                 	<input class="custom-text" type="text" placeholder="Phone No" data-role="none" name="data[Profile][phone]">
                 </div>
                 <div class='input-container'>
-                    <div class="icon-rh"><i class="fa fa-chevron-left fa-fw"></i></div>
-                    <a href="dashboard.html" data-rel="back"><button type="submit" data-role="none" class="get-quote-back"></button></a>
+                    <!-- <div class="icon-rh"><i class="fa fa-chevron-left fa-fw"></i></div> -->
+                    <!-- <a href="dashboard.html" data-rel="back"><button type="submit" data-role="none" class="get-quote-back"></button></a> -->
                     <button type="submit" data-role="none" class="get-quote-continue">Continue</button>
                	</div>                                       
 										                                        
