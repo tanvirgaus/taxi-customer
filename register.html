@@ -47,7 +47,14 @@
 	function callbackRegister(data) {
 		if(data.success == true) {
 			setLoginState(data);
-			location.replace('dashboard.html');
+			
+			var redirect = getLocalStorage("redirectOffer");
+			if (redirect == 0){
+				location.replace('review-offer.html');
+			}else {
+				location.replace('dashboard.html');
+			}
+			//location.replace('dashboard.html');
 		} else {
 			console.log(data);
 			showMessage(data);
