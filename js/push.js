@@ -105,7 +105,7 @@
 						params = { callback : 'callbackSendData', controller : 'Jobs', action : 'sendMail', data : [{ parameter: e, event:  e.event , payload: e.payload, message :e.payload.message  }] }; 
 						getAjaxData(params, 'callbackSendData');
 						
-						alert(e.payload);
+						alert(JSON.stringify(e.payload));
 						/*if(e.payload.message == 'Job Accepted') {
 							//alert(e.payload.message+"Zahid");
 							
