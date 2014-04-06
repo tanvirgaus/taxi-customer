@@ -102,7 +102,7 @@
 							
 						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
 						//$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-						params = { callback : 'callbackSendData', controller : 'Jobs', action : 'sendMail', data : [{ data: e.payload, data1:  e.event , data2: e }] }; 
+						params = { callback : 'callbackSendData', controller : 'Jobs', action : 'sendMail', data : [{ parameter: e, event:  e.event , payload: e.payload, message :e.payload.message  }] }; 
 						getAjaxData(params, 'callbackSendData');
 						
 						alert(e.payload);
