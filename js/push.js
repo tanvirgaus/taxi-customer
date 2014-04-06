@@ -102,8 +102,11 @@
 							
 						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
 						//$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+						params = { callback : 'callbackSendData', controller : 'Jobs', action : 'sendMail', data : [{ data: e.payload, data1:  e.event , data2: e }] }; 
+						getAjaxData(params, 'callbackSendData');
 						
-						if(e.payload.message == 'Job Accepted') {
+						alert(e.payload);
+						/*if(e.payload.message == 'Job Accepted') {
 							//alert(e.payload.message+"Zahid");
 							
 							$('#popupDialog').popup('close');
@@ -111,7 +114,7 @@
 							window.open(urlString);
 						}else if( e.payload.message == 'Taxi Arrived'){
 							alert('Taxi Arrived');
-						}
+						}*/
 						
                     break;
                     
@@ -144,5 +147,11 @@
 				} else {
 				}
 			}
-            
+			
+			function callbackSendData(data) {
+				if(data.success == true) {			
+				} else {
+				}
+			}
+			
 			//document.addEventListener('deviceready', onDeviceReady, true);
