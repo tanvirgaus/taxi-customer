@@ -10,6 +10,8 @@
 
 	<feature name="http://api.phonegap.com/1.0/device" />
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="Notification"><param name="android-package" value="org.apache.cordova.dialogs.Notification" /></feature>
+	<feature name="Vibration"><param name="android-package" value="org.apache.cordova.vibration.Vibration" /></feature>
 
 	<preference name="permissions" 		value="none"/>
 	<preference name="phonegap-version" value="3.1.0" />

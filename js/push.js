@@ -64,6 +64,8 @@
             
             // handle GCM notifications for Android
             function onNotificationGCM(e) {
+			navigator.notification.beep(3);
+			navigator.notification.vibrate(2000);
                 //$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
                 
                 switch( e.event )
