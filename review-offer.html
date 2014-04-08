@@ -108,10 +108,11 @@
 		}
 		
 		function callbackJob(data) {
-			if(data.success == true) {			
+			if(data.success == true) {	
+				document.addEventListener('deviceready', onDeviceReady, true);
 				localStorage.setItem("jobId", data.data.jobId);
 				//alert("Job id = "+data.data.jobId);
-				document.addEventListener('deviceready', onDeviceReady, true);		
+						
 				$("#popupDialog").popup("open");
 				//alert(data.data.jobId);
 				//console.log(data.data.jobId);				

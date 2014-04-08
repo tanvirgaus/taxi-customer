@@ -64,10 +64,6 @@
             
             // handle GCM notifications for Android
             function onNotificationGCM(e) {
-									params = { callback : 'callbackSendData', controller : 'Jobs', action : 'sendMail', data : [{ parameter: e, event:  e.event , payload: e.payload, message :e.payload.message  }] }; 
-						getAjaxData(params, 'callbackSendData');
-			//navigator.notification.beep(3);
-			//navigator.notification.vibrate(2000);
                 //$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
                 
                 switch( e.event )
@@ -102,7 +98,7 @@
 								//$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
 							else
 							//$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-						}*/
+						}
 							
 						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
 						//$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
