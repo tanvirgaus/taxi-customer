@@ -89,7 +89,8 @@
 							//$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 							
 							// if the notification contains a soundname, play it.
-							var my_media = new Media("/android_asset/www/"+e.soundname);
+							//var my_media = new Media("/android_asset/www/"+e.soundname);
+							var my_media = new Media(e.soundname);
 							my_media.play();
 						}
 						else
@@ -110,16 +111,16 @@
 						//navigator.notification.vibrate(2000);
 
 						
-						alert(JSON.stringify(e.payload));
-						/*if(e.payload.message == 'Job Accepted') {
+						//alert(JSON.stringify(e.payload));
+						if(e.payload.title == 'Job Accepted') {
 							//alert(e.payload.message+"Zahid");
 							
 							$('#popupDialog').popup('close');
 							urlString = "rate-taxi.html";
 							window.open(urlString);
-						}else if( e.payload.message == 'Taxi Arrived'){
+						}else if( e.payload.title == 'Taxi Arrived'){
 							alert('Taxi Arrived');
-						}*/
+						}
 						
                     break;
                     
