@@ -92,11 +92,24 @@
 							//var my_media = new Media("/android_asset/www/"+e.soundname);
 							var my_media = new Media(e.soundname);
 							my_media.play();
+							if(e.payload.title == 'Job Accepted') {
+								$('#popupDialog').popup('close');
+								urlString = "rate-taxi.html";
+								window.open(urlString);
+							}else if( e.payload.title == 'Taxi Arrived'){
+								alert('Taxi Arrived');
+							}
 						}
 						else
 						{	// otherwise we were launched because the user touched a notification in the notification tray.
 							if (e.coldstart){
-							
+								if(e.payload.title == 'Job Accepted') {
+									$('#popupDialog').popup('close');
+									urlString = "rate-taxi.html";
+									window.open(urlString);
+								}else if( e.payload.title == 'Taxi Arrived'){
+									alert('Taxi Arrived');
+								}
 							}else{
 							
 							}
@@ -112,7 +125,7 @@
 
 						
 						//alert(JSON.stringify(e.payload));
-						if(e.payload.title == 'Job Accepted') {
+					/*if(e.payload.title == 'Job Accepted') {
 							//alert(e.payload.message+"Zahid");
 							
 							$('#popupDialog').popup('close');
@@ -120,7 +133,7 @@
 							window.open(urlString);
 						}else if( e.payload.title == 'Taxi Arrived'){
 							alert('Taxi Arrived');
-						}
+						} */
 						
                     break;
                     
