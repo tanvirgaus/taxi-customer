@@ -97,7 +97,7 @@
 								urlString = "rate-taxi.html";
 								window.open(urlString);
 							}else if( e.payload.title == 'Taxi Arrived'){
-								alert('Taxi Arrived');
+								alert('Taxi Arrived forground');
 							}
 						}
 						else
@@ -108,7 +108,7 @@
 									urlString = "rate-taxi.html";
 									window.open(urlString);
 								}else if( e.payload.title == 'Taxi Arrived'){
-									alert('Taxi Arrived');
+									alert('Taxi Arrived coldstart');
 								}
 							}else{
 							
