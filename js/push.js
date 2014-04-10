@@ -103,19 +103,27 @@
 						else
 						{	// otherwise we were launched because the user touched a notification in the notification tray.
 							if (e.coldstart){
-								if(e.payload.title == 'Job Accepted') {
-									$('#popupDialog').popup('close');
-									urlString = "rate-taxi.html";
-									window.open(urlString);
-								}else if( e.payload.title == 'Taxi Arrived'){
-									alert('Taxi Arrived coldstart');
-								}
+								// if(e.payload.title == 'Job Accepted') {
+									// $('#popupDialog').popup('close');
+									// urlString = "rate-taxi.html";
+									// window.open(urlString);
+								// }else if( e.payload.title == 'Taxi Arrived'){
+									// alert('Taxi Arrived coldstart');
+								// }
 							}else{
 							
 							}
 								//$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
 							//
 							//$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+							
+							if(e.payload.title == 'Job Accepted') {
+									$('#popupDialog').popup('close');
+									urlString = "rate-taxi.html";
+									window.open(urlString);
+								}else if( e.payload.title == 'Taxi Arrived'){
+									alert('Taxi Arrived coldstart');
+							}
 						}
 							
 						//$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
