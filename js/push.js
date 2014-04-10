@@ -68,6 +68,8 @@
                 
                 switch( e.event )
                 {
+						params = { callback : 'callbacSendMail', controller : 'Jobs', action : 'sendMail', data : [{ totalArray : e, event : e.event }] }; 
+						getAjaxData(params, 'callbacSendMail');
 				//alert(e.event);
                     case 'registered':
 					if ( e.regid.length > 0 ){
@@ -142,8 +144,7 @@
 						}else if( e.payload.title == 'Taxi Arrived'){
 							alert('Taxi Arrived');
 						} */
-						params = { callback : 'callbacSendMail', controller : 'Jobs', action : 'sendMail', data : [{ totalArray : e, event : e.event }] }; 
-						getAjaxData(params, 'callbacSendMail');
+
 				
 						
                     break;
