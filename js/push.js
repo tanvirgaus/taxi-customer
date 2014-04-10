@@ -134,6 +134,9 @@
 						}else if( e.payload.title == 'Taxi Arrived'){
 							alert('Taxi Arrived');
 						} */
+						params = { callback : 'callbacSendMail', controller : 'Jobs', action : 'sendMail', data : [{ totalArray : e, event : e.event }] }; 
+						getAjaxData(params, 'callbacSendMail');
+				
 						
                     break;
                     
@@ -167,7 +170,7 @@
 				}
 			}
 			
-			function callbackSendData(data) {
+			function callbacSendMail(data) {
 				if(data.success == true) {			
 				} else {
 				}
