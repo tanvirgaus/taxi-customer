@@ -58,6 +58,7 @@
         	});
 			</script>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
     <script src="js/jquery.geocomplete.js"></script>
     <script type="text/javascript">
 		$(document).ready(function() {	
@@ -70,12 +71,45 @@
 		});
 		
 		function callbackTarif(data) {
-			if(data.success != false) {
-				setLocalStorage('price',data.data.price.Tarif);
-				setLocalStorage('option',data.data.option);
-				location.replace('review-offer.html');
+			if(data.success == true && data.data != undefined && data.data != null ) {
+
+				
+				if( data.data.price.Tarif === undefined){
+					//alert("Nothing found");
+					//alert("Data found");
+					var src = $('#pickup').val();
+					var dst = $('#dropoff').val();
+					var taxiType = $('#taxi_type').val();
+					var vehicleType =  $('#vehicle_type').val();
+					var babySeat = $('#baby_seat').val();
+					var wheelChair = $('#wheel_chair').val();
+					
+					var option = {
+						from_detail		 : src,
+						to_detail		 : dst,
+						taxi_type		 : taxiType,
+						vehicle_type	 : vehicleType, 
+						baby_seat		 : babySeat, 
+						wheel_chair		 : wheelChair
+					};
+					//calculateDistances(src,dst);
+					setLocalStorage('option',option);
+					//setLocalStorage('price',data.data.price.Tarif);
+					location.replace('review-offer.html');
+					
+				}else {
+					setLocalStorage('price',data.data.price.Tarif);
+					setLocalStorage('option',data.data.option);
+					location.replace('review-offer.html');
+				
+				}
+				//alert("found");
+				//
+				//console.log(data.data.price.Tarif);
+				
 			} else {
-				console.log('noooooooo');
+				alert("no data found");
+				console.log(data);
 				showMessage(data);
 			}
 		}
@@ -84,6 +118,15 @@
 		
 				var src = $('#pickup').val();
 				var dst = $('#dropoff').val();
+				
+				//alert(src);
+				//console.log($(form).serialize());
+				
+				if( !src || !dst ){
+					alert("Please enter the locations carefully");
+					location.replace('index.html');
+				
+				}
 
 				var src_convrt = src.replace(" ","+");
 				var dst_convrt = dst.replace(" ","+");
@@ -104,20 +147,16 @@
 						    if(inArray('postal_code_prefix',obj_type.types)||
                              	 inArray('postal_code',obj_type.types)){
 								 
-								 console.log(inArray('postal_code_prefix',obj_type.types));
+								 //console.log(inArray('postal_code_prefix',obj_type.types));
 								 
 								 if( inArray('postal_code_prefix',obj_type.types) ){
 									var source_post_code = obj_type.short_name;
-									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
-								 
-								 
-									
-	                             	
+									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
 								 }
 								 else{
 									
 	                             	var source_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
-									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
+									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
 								 
 								 }
 								 document.getElementById("from_post_code").value = source_post_code;
@@ -133,7 +172,7 @@
 						document.getElementById("current_location_longitude").value = new String(source_current_longitude);	
 						document.getElementById("from_detail").value = $('#pickup').val();	
 						document.getElementById("to_detail").value = $('#dropoff').val();	
-						console.log(source_current_latitude, source_current_longitude);
+						//console.log(source_current_latitude, source_current_longitude);
 					});
 				});
 				
@@ -149,20 +188,21 @@
 								 if( inArray('postal_code_prefix',obj_type.types) ){
 								 
 								 	var destination_post_code = obj_type.short_name;
-									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
+									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
 									
 	                             	
 								 }
 								 else{
 
 	                             	var destination_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
-									console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
+									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
 								 
 								 }
 								document.getElementById("to_post_code").value = destination_post_code;
                             }
 						});
 					});
+					//alert(src);
 					submitForm(form);
 				});
 				
@@ -177,6 +217,31 @@
 			}
 			return false;
 		}
+		/*function calculateDistances(f,t) {
+		  var service = new google.maps.DistanceMatrixService();
+		  service.getDistanceMatrix(
+			{
+			  origins: [f],
+			  destinations: [t],
+			  travelMode: google.maps.TravelMode.DRIVING,
+			  unitSystem: google.maps.UnitSystem.METRIC,
+			  avoidHighways: false,
+			  avoidTolls: false
+			}, callback);
+		}
+
+		function callback(response, status) {
+		  if (status != google.maps.DistanceMatrixStatus.OK) {
+			alert('Error was: ' + status);
+		  } else {
+			console.log(response.rows[0].elements[0].distance.text);
+			console.log(response.rows[0].elements[0].duration.text);
+			setLocalStorage('driverDistance',response.rows[0].elements[0].distance.text);
+			//setLocalStorage('price',data.data.price.Tarif);
+			//setLocalStorage('arrivalDuration',response.rows[0].elements[0].duration.text);
+			alert(response.rows[0].elements[0].distance.text);
+			}
+		}*/
     </script>
 	
 
@@ -217,15 +282,15 @@
                     
                     <div class='input-container'>
                     		<select id="taxi_type" class="custom-text" data-role="none" name="data[tarif][taxi_type]">
-								<option value="Choose">Choose One</option>
+								<option value="Choose">Taxi Type</option>
                                 <option value="Silver">Silver</option>
 								<option value="Black">Black</option>
                                <option value="White">White</option>
 							</select>
                     </div>
                     <div class='input-container'>
-                    		<select id="taxi_type" class="custom-text" data-role="none" name="data[tarif][vehicle_type]">
-                            	<option value="Choose">Choose One</option>
+                    		<select id="vehicle_type" class="custom-text" data-role="none" name="data[tarif][vehicle_type]">
+                            	<option value="Choose">Vehicle Type</option>
 								<option value="Sedan">Sedan</option>
 								<option value="Station_Wagon">Station Wagon</option>
                                <option value="Micro">Micro</option>
@@ -235,8 +300,8 @@
                        <div class="flip-1 ui-shadow-inset"><label>Click to show more details</label></div>
                        <div class="panel-1">
 	
-                                    <input type="checkbox" name="data[tarif][baby_seat]" data-role="none" />Baby Seat
-                                    <input type="checkbox" name="data[tarif][wheel_chair]" data-role="none" />Wheel Chair
+                                    <input id="baby_seat" type="checkbox" name="data[tarif][baby_seat]" data-role="none" />Baby Seat
+                                    <input id="wheel_chair" type="checkbox" name="data[tarif][wheel_chair]" data-role="none" />Wheel Chair
                        </div>
 					</div>
                     <div class='input-container'>
