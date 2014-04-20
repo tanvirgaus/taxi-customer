@@ -142,26 +142,19 @@
 				$.getJSON(source_data,function(result){
 				  	$.each(result.results, function(i, field){
 						$.each(field.address_components, function(i, obj_type){
-						
-							
-						    if(inArray('postal_code_prefix',obj_type.types)||
-                             	 inArray('postal_code',obj_type.types)){
-								 
-								 //console.log(inArray('postal_code_prefix',obj_type.types));
-								 
+						    if(inArray('postal_code_prefix',obj_type.types)|| inArray('postal_code',obj_type.types)){
 								 if( inArray('postal_code_prefix',obj_type.types) ){
 									var source_post_code = obj_type.short_name;
-									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
-								 }
-								 else{
-									
-	                             	var source_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
-									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+source_post_code);
-								 
-								 }
-								 document.getElementById("from_post_code").value = source_post_code;
-
+								} else{
+	                             	var source_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));						 
+								}
+								document.getElementById("from_post_code").value = source_post_code;
                             }
+							if(inArray('country',obj_type.types)){
+								console.log(obj_type.short_name);
+								setLocalStorage('countryShortName',obj_type.short_name);
+								
+							}
 						});
 						
 						$.each(field.geometry.location, function(i, obj_return){
@@ -181,23 +174,12 @@
 				$.getJSON(destination_data,function(result){
 				  	$.each(result.results, function(i, field){
 						$.each(field.address_components, function(i, obj_type){
-						
-                            if(inArray('postal_code_prefix',obj_type.types)||
-                             	 inArray('postal_code',obj_type.types)){
-								 
-								 if( inArray('postal_code_prefix',obj_type.types) ){
-								 
-								 	var destination_post_code = obj_type.short_name;
-									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
-									
-	                             	
-								 }
-								 else{
-
-	                             	var destination_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));
-									//console.log(obj_type.short_name.length+' == '+obj_type.short_name+' == '+destination_post_code);
-								 
-								 }
+                            if(inArray('postal_code_prefix',obj_type.types)|| inArray('postal_code',obj_type.types)){
+								if( inArray('postal_code_prefix',obj_type.types) ){
+								 	var destination_post_code = obj_type.short_name;								
+								}else{
+	                             	var destination_post_code = obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));					 
+								}
 								document.getElementById("to_post_code").value = destination_post_code;
                             }
 						});

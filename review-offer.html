@@ -60,25 +60,38 @@
 		
 			//currentUser = getLocalStorage("User");
 			//driver = currentUser.id;
-
+			var countryList = ['AD','AE','AF','AG','AI','AL','AM','AO','AQ','AR','AS','AT','AU','AW','AX','AZ','BA','BB','BD','BE','BF','BG','BH','BI','BJ','BL','BM','BN','BO','BQ','BR','BS','BT','BV','BW','BY','BZ','CA','CC','CD','CF','CG','CH','CI','CK','CL','CM','CN','CO','CR','CU','CV','CW','CX','CY','CZ','DE','DJ','DK','DM','DO','DZ','EC','EE','EG','EH','ER','ES','ET','FI','FJ','FK','FM','FO','FR','GA','GD','GE','GF','GG','GH','GI','GL','GM','GN','GP','GQ','GR','GS','GT','GU','GW','GY','HK','HM','HN','HR','HT','HU','ID','IE','IL','IM','IN','IO','IQ','IR','IS','IT','JE','JM','JO','JP','KE','KG','KH','KI','KM','KN','KP','KR','KW','KY','KZ','LA','LB','LC','LI','LK','LR','LS','LT','LU','LV','LY','MA','MC','MD','ME','MF','MG','MH','MK','ML','MM','MN','MO','MP','MQ','MR','MS','MT','MU','MV','MW','MX','MY','MZ','NA','NC','NE','NF','NG','NI','NL','NO','NP','NR','NU','NZ','OM','PA','PE','PF','PG','PH','PK','PL','PM','PN','PR','PS','PT','PW','PY','QA','RE','RO','RS','RU','RW','SA','SB','SC','SD','SE','SG','SH','SI','SJ','SK','SL','SM','SN','SO','SR','ST','SV','SX','SY','SZ','TC','TD','TF','TG','TH','TJ','TK','TL','TM','TN','TO','TR','TT','TV','TW','TZ','UA','UG','UM','US','UY','UZ','VA','VC','VE','VG','VI','VN','VU','WF','WS','YE','YT','ZA','ZM','ZW'];
+			
 			option = getLocalStorage('option');
-			if( getLocalStorage('price') == undefined ) {
+			price = getLocalStorage('price');
+			if( price.location_from === null || price.location_to === null ) {
+			// alert("div working");
 				calculateDistances(option.from_detail,option.to_detail);
-				//alert("Working");
-				//params = { callback : 'callbackMemberPrice', controller : 'MembersTarifs', action : 'findTarif', data : [{ driverId : localStorage.getItem('driverid'), jobId : jobId.id, dDistance: localStorage.getItem('driverDistance'), dTime:localStorage.getItem('arrivalDuration') }] };
-				//getAjaxData(params, 'callbackMemberPrice');
-				var price = {"peak_rate" : 30};
 				
+			
 			} else {
-				price = getLocalStorage('price');
+				$('#rate_amount_out').text(price.peak_rate);
+				$('#job_calculated_fare').val(price.peak_rate);
 			}
+			if(  jQuery.inArray( getLocalStorage('countryShortName'), countryList ) ) {
+					//alert(getLocalStorage('drivingDistance'));
+					//price.peak_rate = price.peak_rate * );
+					//alert(price);
+					
+					$('#distance_amount_out').text(getLocalStorage('drivingDistance')+'km');
+					$('#job_distance_amount').val(getLocalStorage('drivingDistance'));
+			}else {
+					$('#distance_amount_out').text(getLocalStorage('drivingDistance')+'ml');
+					$('#job_distance_amount').val(getLocalStorage('drivingDistance'));
+			}
+
 			
 			//alert(dump(price));
 			$('#from_address_out').text(option.from_detail);
 			$('#to_address_out').text(option.to_detail);
-			$('#rate_amount_out').text(price.peak_rate);
-
 			
+
+
 			$('#vehichle_type_out').text(option.vehicle_type);
 			$('#taxi_type_out').text(option.taxi_type);
 			$('#baby_seat_out').text(option.baby_seat);
@@ -87,7 +100,7 @@
 			//$('#job_poster_id').val(driver);						
 			$('#job_form_location').val(price.location_from);
 			$('#job_to_location').val(price.location_to);
-			$('#job_calculated_fare').val(price.peak_rate);
+			
 			
 			
 			$('#job_vehicle_type').val(option.vehicle_type);
@@ -157,10 +170,15 @@
 		  } else {
 			//console.log(response.rows[0].elements[0].distance.text);
 			//console.log(response.rows[0].elements[0].duration.text);
-			//setLocalStorage('driverDistance',response.rows[0].elements[0].distance.text);
+			setLocalStorage('drivingDistance',response.rows[0].elements[0].distance.text.substring(0, response.rows[0].elements[0].distance.text.indexOf(" ")));
+
+			//window.price.peak_rate = price.peak_rate
+			//obj_type.short_name.substring(0, obj_type.short_name.indexOf(" "));					 
 			//setLocalStorage('price',data.data.price.Tarif);
 			//setLocalStorage('arrivalDuration',response.rows[0].elements[0].duration.text);
-			alert(response.rows[0].elements[0].distance.text);
+			window.price.peak_rate = window.price.peak_rate * response.rows[0].elements[0].distance.text.substring(0, response.rows[0].elements[0].distance.text.indexOf(" "));
+			$('#rate_amount_out').text(window.price.peak_rate);
+			$('#job_calculated_fare').val(window.price.peak_rate);
 			}
 		}
 		
@@ -233,7 +251,8 @@
                             <li>Taxi Type: <span id="taxi_type_out"></span></li>
                             <li>Baby Seat: <span id="baby_seat_out"></span></li>
                             <li>Wheel Chair: <span id="wheel_chair_out"></span></li>
-                            <li> RATE : <span id="rate_amount_out"></span> </li>
+                            <li> Fare Amount : <span id="rate_amount_out"></span> </li>
+							<li> Approximate Distance : <span id="distance_amount_out"></span> </li>
 
                         </ul> 
                     </div> 
@@ -262,6 +281,7 @@
                     <input type="hidden" id="job_vehicle_type" value="" name="data[job][vehicle_type]" />
                     <input type="hidden" id="job_baby_seat" value="" name="data[job][baby_seat]" /> 
                     <input type="hidden" id="job_wheel_chair" value="" name="data[job][wheel_chair]" /> 
+					<input type="hidden" id="job_distance_amount" value="" name="data[job][distance_amount]" /> 
                     <input type="hidden" id="current_location_latitude" value="" name="data[job][current_lat]" /> 
 					<input type="hidden" id="current_location_longitude" value="" name="data[job][current_lng]" />                                     
                       </div> 
